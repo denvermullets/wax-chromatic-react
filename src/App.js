@@ -1,25 +1,26 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import { Route, Switch } from "react-router-dom";
+import Collection from './containers/Collection'
+import Wantlist from './containers/Wantlist';
+import Home from "./containers/Home";
+
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <Switch> {/** in switch, make sure you go most specific to least and/or use exact  */}
+        {/**
+         * Router props => auto passed down in component notation 
+         */}
+        {/* <Route path="/pets/:id" component={PetProfile}/>  */}
+        <Route path="/collection" component={Collection}/> 
+        <Route path="/wantlist" component={Wantlist}/>
+        {/* <Route path="/help" render={(routerProps) => <Help urgency={5} {...routerProps}/>}/> */}
+        <Route path="/" component={Home}/>
+      </Switch>
+
+    </>
   );
 }
 
