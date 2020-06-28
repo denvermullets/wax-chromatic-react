@@ -4,11 +4,12 @@ import { Route, Switch } from "react-router-dom";
 import Collection from './containers/Collection'
 import Wantlist from './containers/Wantlist';
 import Home from "./containers/Home";
-
+import NavBar from './components/NavBar'
 
 function App() {
   return (
     <>
+      <NavBar />
       <Switch> {/** in switch, make sure you go most specific to least and/or use exact  */}
         {/**
          * Router props => auto passed down in component notation 
