@@ -1,9 +1,10 @@
 import React from 'react';
+import SearchPage from '../components/SearchPage';
 
 const Home = () => {
   return (
     <>
-     This is my app
+     <SearchPage />
     </>
   );
 }
