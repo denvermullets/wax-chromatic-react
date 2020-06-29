@@ -18,19 +18,29 @@ class NavBar extends Component {
       <>
         <Menu inverted>
         <Menu.Item
-          name='browse'
-          active={activeItem === 'browse'}
+          as={Link} to="/"
+          name='home'
+          active={activeItem === 'home'}
           onClick={this.handleItemClick}
         >
-          Browse
+          Wax Chromatics
+        </Menu.Item>
+        <Menu.Item
+          as={Link} to="/collection"
+          name='collection'
+          active={activeItem === 'collection'}
+          onClick={this.handleItemClick}
+        >
+          Collection
         </Menu.Item>
 
         <Menu.Item
-          name='submit'
-          active={activeItem === 'submit'}
+          as={Link} to="/wantlist"
+          name='wantlist'
+          active={activeItem === 'wantlist'}
           onClick={this.handleItemClick}
         >
-          Submit
+          Wantlist
         </Menu.Item>
 
         <Menu.Menu position='right'>
