@@ -1,10 +1,10 @@
 // maybe uninstall lodash
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Input } from 'semantic-ui-react'
 
 
 const SearchPage = (props) => {
-  const [ search, setSearch ] = useState()
+  const [ search, setSearch ] = useState('')
 
   const onKeyPress = (e) => {
     if (e.key === 'Enter') {
@@ -36,6 +36,7 @@ const SearchPage = (props) => {
       .then(response => response.json())
       // .then(result => console.log(result))
       .then(results => props.setArtists(results))
+      .then(setSearch(''))
       .catch(error => console.log('error', error));
   }
 
@@ -46,6 +47,7 @@ const SearchPage = (props) => {
             icon: "search",
             onClick: () => executeSearch()
           }}
+          value={search}
           onKeyPress={onKeyPress}
           placeholder='Search...' 
           onChange={handleSearchChange}

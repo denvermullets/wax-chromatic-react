@@ -1,16 +1,37 @@
 import React, { Component } from 'react';
-import { Card, Icon, Image } from 'semantic-ui-react'
+import { Card, Icon } from 'semantic-ui-react'
+import { Link, Redirect } from 'react-router-dom'
 
 class ArtistResult extends Component {
+
+  addDefaultSrc(ev){
+    ev.target.src = 'https://freesvg.org/img/1536281106.png'
+  }
+
   render() {
-    const { cover_image, title, thumb, id} = this.props.artist
+    const { cover_image, title, id } = this.props.artist
     return (
       <>
         <Card>
-          <img src={cover_image} height={300}/>
-          {/* <Image src={cover_image} wrapped ui={false}  /> */}
+          <img src={cover_image} onError={this.addDefaultSrc} height={275} alt={title} />
+          {/* <Image src={cover_image} square={true} wrapped ui={false}  /> */}
           <Card.Content>
             <Card.Header>{title}</Card.Header>
+          </Card.Content>
+          <Card.Content extra>
+            {/* <a 
+             onClick={() => this.props.selectedArtist(id)}> 
+              <Icon name='headphones' />
+                Select Artist
+            </a> */}
+          <Link to={{
+            pathname: `/artist`,
+            search: `q=${title}`,
+            state: { artist: this.props.artist }
+          }}>
+            <Icon name='headphones' />
+              Select Artist
+          </Link>
           </Card.Content>
         </Card>
       </>
