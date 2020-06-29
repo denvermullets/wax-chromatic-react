@@ -35,8 +35,9 @@ class NavBar extends Component {
 
         <Menu.Menu position='right'>
           <Menu.Item
-            name='signup'
-            active={activeItem === 'signup'}
+            as={Link} to="/login"
+            name='login'
+            active={activeItem === 'login'}
             onClick={this.handleItemClick}
           >
             Login
