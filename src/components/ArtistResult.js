@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Card, Icon } from 'semantic-ui-react'
-import { Link, Redirect } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
 class ArtistResult extends Component {
 
@@ -9,7 +9,7 @@ class ArtistResult extends Component {
   }
 
   render() {
-    const { cover_image, title, id } = this.props.artist
+    const { cover_image, title } = this.props.artist
     return (
       <>
         <Card>
@@ -19,11 +19,6 @@ class ArtistResult extends Component {
             <Card.Header>{title}</Card.Header>
           </Card.Content>
           <Card.Content extra>
-            {/* <a 
-             onClick={() => this.props.selectedArtist(id)}> 
-              <Icon name='headphones' />
-                Select Artist
-            </a> */}
           <Link to={{
             pathname: `/artist`,
             search: `q=${title}`,
