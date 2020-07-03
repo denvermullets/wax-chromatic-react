@@ -1,7 +1,19 @@
-import React from 'react';
-import { Card, Icon } from 'semantic-ui-react'
+import React, { useEffect, useState } from 'react';
+import { Card, Button } from 'semantic-ui-react'
 
 const AlbumInfo = (props) => {
+  const [ collectionItem, setCollectionItem] = useState()
+  
+  const addToCollection = (album) => {
+    fetch('https://localhost:3000/', {
+      method: 'POST',
+      body: JSON.stringify(album),
+      headers: {
+        "Content-type": "application/json; charset=UTF-8"
+      } })
+        .then(response => response.json())
+    }
+
 
   const addDefaultSrc = (ev) => {
     ev.target.src = 'https://freesvg.org/img/1536281106.png'
@@ -11,26 +23,29 @@ const AlbumInfo = (props) => {
   const { format, label, released, thumb, title } = props.vinyls
   return (
     <>
-      <Card>
-        <img src={thumb} onError={addDefaultSrc} height={275} alt={title} />
-        {/* <Image src='/images/avatar/large/matthew.png' wrapped ui={false} /> */}
-        <Card.Content>
-          <Card.Header>{title}</Card.Header>
-          <Card.Meta>
-            <span className='date'>{released}</span>
-          </Card.Meta>
-          <Card.Description>
-            {label}
-            {format}
-          </Card.Description>
-        </Card.Content>
-        <Card.Content extra>
-          <a>
-            <Icon name='headphones' />
-            Add to Collection
-          </a>
-        </Card.Content>
-      </Card>
+        <Card>
+          <img src={thumb} onError={addDefaultSrc} height={250} width={250} alt={title} />
+          <Card.Content>
+            <Card.Header>{title}</Card.Header>
+            <Card.Meta>
+              <span className='date'>{released}</span>
+            </Card.Meta>
+            <Card.Description>
+              {label}
+              {format}
+            </Card.Description>
+          </Card.Content>
+          <Card.Content extra>
+            <div className='ui two buttons'>
+            <Button basic color='green'>
+              Add to Collection
+            </Button>
+            <Button basic color='orange'>
+              Add to Wantlist
+            </Button>
+          </div>
+          </Card.Content>
+        </Card>
     </>
   );
 }

@@ -6,13 +6,14 @@ const AlbumGrid = (props) => {
   return (
     <>
       <Card.Group>
-        {props.vinyls.map(album => 
+        {props.vinyls ? props.vinyls.map(album => 
           <AlbumInfo 
+            key={album.id}
             vinyls={album}
             artistInfo={props.artistInfo}
           />
           
-          )}
+          ) : null}
         
       </Card.Group>
       
