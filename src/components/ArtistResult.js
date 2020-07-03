@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom'
 class ArtistResult extends Component {
 
   addDefaultSrc(ev){
+    // default image if discogs image fails or has no image
     ev.target.src = 'https://freesvg.org/img/1536281106.png'
   }
 
@@ -14,7 +15,6 @@ class ArtistResult extends Component {
       <>
         <Card>
           <img src={cover_image} onError={this.addDefaultSrc} height={275} alt={title} />
-          {/* <Image src={cover_image} square={true} wrapped ui={false}  /> */}
           <Card.Content>
             <Card.Header>{title}</Card.Header>
           </Card.Content>

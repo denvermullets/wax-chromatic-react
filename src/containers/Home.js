@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import SearchBar from '../components/SearchBar';
 import ArtistResult from '../components/ArtistResult';
 import { Card } from 'semantic-ui-react';
-// import ArtistProfile from './ArtistProfile';
 
 class Home extends Component {
 
@@ -22,7 +21,7 @@ class Home extends Component {
   }
 
   render() {
-    // let searchArtistsCount = this.state.searchArtists.count
+
     return (
       <>
         <SearchBar
@@ -37,9 +36,6 @@ class Home extends Component {
             />
           })}
         </Card.Group>
-        {/* <ArtistProfile
-          selectedArtist={this.state.selectedArtist}
-        /> */}
       </>
     );
   }
