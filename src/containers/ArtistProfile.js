@@ -1,4 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
+import { throttle } from 'throttle-debounce';
+import throttledQueue from 'throttled-queue'
 import ArtistBio from '../components/ArtistBio';
 import AlbumGrid from '../components/AlbumGrid';
 
@@ -20,10 +22,10 @@ const requestOptions = {
 const ArtistProfile = (props) => {
   const artistId = props.location.state.artist.id // from router push
 
-  const [ count, setCount ] = useState(0)
+  const [ releasesLoaded, setReleasesLoaded ] = useState(false)
   const [ artistInfo, setArtistInfo ] = useState()
   const [ releases, setReleases ] = useState()
-  const [ vinyls, setVinyls ] = useState()
+  const [ vinyls, setVinyls ] = useState([])
 
   const checkArtist = () => {
     // get artist information
@@ -38,80 +40,66 @@ const ArtistProfile = (props) => {
     fetch(`${url}/artists/${artistId}/releases?sort=year&sort_order=desc&page=1&per_page=100`, requestOptions)
       .then(response => response.json())
       .then(artistReleases => {
-        let releases = artistReleases.releases
-        releases = releases.filter(release => release.type === 'master')
-        setReleases(releases)
-        /// need to rate limit this     
-        // releases.map(vinyl => getVinylAlbums(vinyl.id))
+        let foundReleases = artistReleases.releases
+        foundReleases = foundReleases.filter(singleRelease => singleRelease.type === 'master' && singleRelease.role === 'Main')
+        setReleases(foundReleases)
       })
+      .then(setReleasesLoaded(true))
       .catch(error => console.log('error', error));
   }
 
-  // const getVinylAlbums = (releaseId) => {
-  //   console.log('calling on releaseId', releaseId)
-  //   const date = new Date()
-  //   var time = date.toLocaleTimeString()
-  //   console.log(time)
+  const getVinylAlbums = (releaseId) => {
+    console.log('calling on releaseId', releaseId)
+    fetch(`${url}/masters/${releaseId}/versions?page=1&per_page=100`, requestOptions)
+      .then(response => response.json())
+      .then(releaseInfo => {
+        let findVinyls = releaseInfo.versions
+        console.log(`all ${findVinyls[0].title} variants`, findVinyls)
+        findVinyls = findVinyls.filter(vinyl => vinyl.major_formats.includes('Vinyl'))
+        findVinyls.map(vinyl => setVinyls(vinyls => [...vinyls, vinyl]))        
+    })
+    .catch(error => console.log('getVinylAlbums oopsie whatsie', error))
+  }
 
-  //   fetch(`${url}/masters/${releaseId}/versions?page=1&per_page=100`, requestOptions)
-  //     .then(response => response.json())
-  //     .then(releaseInfo => {
-  //       let vinyls = releaseInfo.versions
-  //       console.log(`all ${vinyls[0].title} variants`, vinyls)
-  //       vinyls = vinyls.filter(vinyl => vinyl.major_formats.includes('Vinyl'))
-  //       // vinyls.map(vinyl => setVinyls({ vinyls: [...vinyls, vinyl]}))
-  //       vinyls.map(vinyl => setVinyls([...vinyls, vinyl]))
-  //     })
-  //     .catch(error => console.log('vinyl hunt', error))
-  // }
+  const checkWaxRecords = (releaseId) => {
+    fetch(`${waxUrl}/albums/${releaseId}`)
+      .then(response => response.json())
+      .then(console.log('checked waxChromatics id: ', releaseId))
+      // .then(artistInfo => setArtistInfo(artistInfo))
+  }
 
   useEffect(() => {
     checkArtist()
+    getArtistReleases()
   }, [])
 
-  useEffect(() => {
-    getArtistReleases()
-  }, [artistInfo]);
-
-  
 
   useEffect(() => {
-    function getVinylAlbums(releaseId) {
-      console.log('calling on releaseId', releaseId)
-      const date = new Date()
-      var time = date.toLocaleTimeString()
-      console.log(time)
-  
-      fetch(`${url}/masters/${releaseId}/versions?page=1&per_page=100`, requestOptions)
-        .then(response => response.json())
-        .then(releaseInfo => {
-          let vinyls = releaseInfo.versions
-          console.log(`all ${vinyls[0].title} variants`, vinyls)
-          vinyls = vinyls.filter(vinyl => vinyl.major_formats.includes('Vinyl'))
-          // vinyls.map(vinyl => setVinyls({ vinyls: [...vinyls, vinyl]}))
-          vinyls.map(vinyl => setVinyls([...vinyls, vinyl]))
-          // setCount( count + 1)
-
-        })
-        .catch(error => console.log('vinyl hunt', error))
+    if (releasesLoaded){
+      loadVinyl()
     }
+  }, [releases])
 
-      // if (releases) {
-      //   const interval = setInterval(() => getVinylAlbums(releases[count].id), 500)
-      // }
-      
-      
-      console.log('count of fetches', count)
-      console.log('release check', releases)
+const loadVinyl = () => {
+  console.log('starting que?')
+  // let's check internal API first to see if info exists
 
-    return () => {
-      // clearInterval(interval)
-    };
-  }, [releases]);
+
+
+    getVinylAlbums(releases[0].id) // start loading 1 album ASAP before 1 second counter starts
+  const throttle = throttledQueue(1, 1000); // at most make 1 request every second.
+  for (let x = 1; x < releases.length; x++) {
+    throttle(function() {
+        // make a network request.
+        getVinylAlbums(releases[x].id)
+    });
+  }
+}
 
   return (
     
     <>
+      
       <ArtistBio 
         name={artistInfo ? artistInfo.name : null}
         profile={artistInfo ? artistInfo.bio : null}
@@ -121,6 +109,8 @@ const ArtistProfile = (props) => {
         vinyls={vinyls ? vinyls : null}
         artistInfo={artistInfo ? artistInfo : null}
       /> 
+
+      {/* {useGetVinyls()} */}
     </>
   );
 }
