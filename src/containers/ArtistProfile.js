@@ -116,15 +116,16 @@ const ArtistProfile = (props) => {
           method: 'POST',
           body: JSON.stringify({
             title: vinylInfo.title,
-            released: vinylInfo.year,
+            released: vinylInfo.released,
             size: 12,
             amount_pressed: 100,
             color: 'black',
             notes: vinylInfo.format,
             cat_no: vinylInfo.catno,
             release_id: waxReleaseNum.id,
+            thumb: vinylInfo.thumb,
             d_album_id: vinylInfo.id,
-            d_release_id: releaseId
+            d_release_id: releaseId,
           }),
           headers: { 'Content-type': 'application/json; charset=UTF-8' }
         })
