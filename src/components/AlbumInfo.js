@@ -1,18 +1,17 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { Card, Button } from 'semantic-ui-react'
 
 const AlbumInfo = (props) => {
-  const [ collectionItem, setCollectionItem] = useState()
   
-  const addToCollection = (album) => {
-    fetch('https://localhost:3000/', {
-      method: 'POST',
-      body: JSON.stringify(album),
-      headers: {
-        "Content-type": "application/json; charset=UTF-8"
-      } })
-        .then(response => response.json())
-    }
+  // const addToCollection = (album) => {
+  //   fetch('https://localhost:3000/', {
+  //     method: 'POST',
+  //     body: JSON.stringify(album),
+  //     headers: {
+  //       "Content-type": "application/json; charset=UTF-8"
+  //     } })
+  //       .then(response => response.json())
+  //   }
 
 
   const addDefaultSrc = (ev) => {
@@ -31,13 +30,16 @@ const AlbumInfo = (props) => {
               <span className='date'>{released}</span>
             </Card.Meta>
             <Card.Description>
-              {label}
+              {label}<br />
               {format}
             </Card.Description>
           </Card.Content>
           <Card.Content extra>
             <div className='ui two buttons'>
-            <Button basic color='green'>
+            <Button 
+              basic color='green' 
+              // onClick={addToCollection({title: title, released: released, size: 12, amount_pressed: 0, color: 'update', notes: format,  })}
+            >
               Add to Collection
             </Button>
             <Button basic color='orange'>
