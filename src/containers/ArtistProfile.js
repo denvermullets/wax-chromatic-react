@@ -8,17 +8,6 @@ const url = 'https://api.discogs.com'
 const waxUrl = 'http://localhost:3000/api/v1'
 const discogsKey = `key=${process.env.REACT_APP_DISCOGS_KEY},`
 const discogsSecret = `secret=${process.env.REACT_APP_DISCOGS_SECRET}`
-// const discogsHeaders = {
-//   "Content-Type": "application/json",
-//   "Authorization": `Discogs ${discogsKey} ${discogsSecret}`,
-//   "User-Agent": "WaxChromatics/v0.1 +https://localhost:3001/login",
-//   // "Accept": "application/vnd.discogs.v2.plaintext+json"
-// }
-
-// const requestOptions = {
-//   method: 'GET',
-//   headers: discogsHeaders,
-// }
 
 const requestOptions = {
   method: 'GET',
@@ -48,6 +37,7 @@ const ArtistProfile = (props) => {
       .then(response => response.json())
       .then(artistInfo => setArtistInfo(artistInfo))
       .then(setArtistInfoLoaded(true))
+      .catch(error => console.log('error getting artist ', error))
   }
 
   const getArtistReleases = () => {
@@ -60,13 +50,13 @@ const ArtistProfile = (props) => {
         foundReleases = foundReleases.filter(singleRelease => singleRelease.type === 'master' && singleRelease.role === 'Main')
         setReleases(foundReleases)
         // create release in WaxDb
-        const throttle = throttledQueue(1, 200); // at most make 1 request every .5 seconds.
-        foundReleases.map(singleRelease => {
+        const throttle = throttledQueue(1, 500); // at most make 1 request every .5 seconds.
+        foundReleases.map(singleRelease => 
           throttle(function() {
             // make a network request.
             createReleases(singleRelease)
           })
-        })
+        )
       })
       .then(setReleasesLoaded(true))
       .catch(error => console.log('error', error));
@@ -146,13 +136,13 @@ const ArtistProfile = (props) => {
         // map thru array of vinyls from selected release
         findVinyls.map(vinyl => setVinyls(vinyls => [...vinyls, vinyl]))
         // since vinyl record isn't in our DB, let's toss it over to create
-        const throttle = throttledQueue(1, 200); // at most make 1 request every .5 seconds.
-        findVinyls.map(createVinyl => {
+        const throttle = throttledQueue(1, 500); // at most make 1 request every .5 seconds.
+        findVinyls.map(createVinyl => 
           throttle(function() {
             // make a network request.
             createWaxAlbums(releaseId, createVinyl)
           })
-        })
+        )
     })
     .catch(error => console.log('getVinylAlbums oopsie whatsie', error))
   }
@@ -183,7 +173,7 @@ const loadWaxVinyl = () => {
   // means releases are in WaxDb, so let's pull info from our db on each release
   console.log('starting wax que')
 
-  const throttle = throttledQueue(1, 200); // at most make 2 request every .2 seconds.
+  const throttle = throttledQueue(1, 500); // at most make 2 request every .2 seconds.
   for (let x = 0; x < releases.length; x++) {
     throttle(function() {
       // make a network request.
