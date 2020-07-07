@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Card, Button } from 'semantic-ui-react'
+import throttledQueue from 'throttled-queue'
 
 const waxUrl = 'http://localhost:3000/api/v1'
 
@@ -7,6 +8,8 @@ const AlbumInfo = (props) => {
   const [ waxAlbumId, setWaxAlbumId ] = useState()
 
   const addToCollection = (album) => {
+    console.log(props)
+    // getWaxAlbumId()
     fetch(`${waxUrl}/collection_albums/`, {
       method: 'POST',
       body: JSON.stringify(album),
@@ -30,16 +33,19 @@ const AlbumInfo = (props) => {
 
   const getWaxAlbumId = () => {
     // if it's already in our db we don't need to look it up
-    if (props.vinyls.d_album_id){
-      console.log('found waxdb album id')
-      setWaxAlbumId(props.vinyls.id)
-    } else {
-      console.log('getting waxdb album id')
-      fetch(`${waxUrl}/albums/${props.vinyls.id}`)
-        .then(response => response.json())
-        .then(album => setWaxAlbumId(album.id))
-        .catch(error => console.log('error fetching album from AlbumInfo.js', error))
-    }
+    const throttle = throttledQueue(1, 1000); // at most make 1 request every .5 seconds.
+      throttle(() => {  
+        if (props.vinyls.d_album_id > 0){
+          console.log('found waxdb album id')
+          setWaxAlbumId(props.vinyls.id)
+        } else {
+          console.log('getting waxdb album id')
+          fetch(`${waxUrl}/albums/${props.vinyls.id}`)
+            .then(response => response.json())
+            .then(album => setWaxAlbumId(album.id))
+            .catch(error => console.log('error fetching album from AlbumInfo.js', error))
+        }
+      })
   }
 
   const addDefaultSrc = (ev) => {
@@ -47,8 +53,17 @@ const AlbumInfo = (props) => {
   }
 
 useEffect(() => {
+  console.log('useEffect props.vinyls.d_album_id', props.vinyls.d_album_id )
+  console.log('useEffect props.vinyls.id', props.vinyls.id )
+
   getWaxAlbumId()
+  
+  return () => {
+    setWaxAlbumId('')
+  };
+
 }, []);
+
 
   const { format, label, released, thumb, title } = props.vinyls
   return (
