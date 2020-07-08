@@ -37,6 +37,7 @@ const SearchPage = (props) => {
       // .then(result => console.log(result))
       .then(results => props.setArtists(results))
       .then(setSearch(''))
+      .then(() => props.hideSearch())
       .catch(error => console.log('error', error));
   }
 

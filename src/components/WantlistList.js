@@ -3,7 +3,7 @@ import { Table } from 'semantic-ui-react'
 import WantlistItem from './WantlistItem';
 
 
-const CollectionList = (props) => {
+const WantlistList = (props) => {
   let sortedVinyls = props.vinyls.sort((a,b) => { return a.artist < b.artist ? -1 : 1 })
   return (
     <>
@@ -15,6 +15,7 @@ const CollectionList = (props) => {
             <Table.HeaderCell>Album</Table.HeaderCell>
             <Table.HeaderCell>Cat No</Table.HeaderCell>
             <Table.HeaderCell>Notes</Table.HeaderCell>
+            <Table.HeaderCell></Table.HeaderCell>
           </Table.Row>
         </Table.Header>
 
@@ -29,4 +30,4 @@ const CollectionList = (props) => {
   );
 }
 
-export default CollectionList;
+export default WantlistList;

@@ -15,6 +15,7 @@ const CollectionList = (props) => {
             <Table.HeaderCell>Album</Table.HeaderCell>
             <Table.HeaderCell>Cat No</Table.HeaderCell>
             <Table.HeaderCell>Notes</Table.HeaderCell>
+            <Table.HeaderCell></Table.HeaderCell>
           </Table.Row>
         </Table.Header>
 

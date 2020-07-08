@@ -1,7 +1,7 @@
 import React from 'react';
-import { Table } from 'semantic-ui-react'
+import { Table, Button } from 'semantic-ui-react'
 
-const CollectionItem = (props) => {
+const WishlistItem = (props) => {
   
   const { released, title, cat_no, notes, artist} = props.vinyl
   return (
@@ -12,9 +12,10 @@ const CollectionItem = (props) => {
         <Table.Cell>{title}</Table.Cell>
         <Table.Cell>{cat_no}</Table.Cell>
         <Table.Cell>{notes}</Table.Cell>
+        <Table.Cell textAlign='center'><Button size="mini" basic color='yellow'>Remove</Button></Table.Cell>
       </Table.Row>
     </>
   );
 }
 
-export default CollectionItem;
+export default WishlistItem;

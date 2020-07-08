@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { Card, Button } from 'semantic-ui-react'
-import throttledQueue from 'throttled-queue'
+// import throttledQueue from 'throttled-queue'
 
 const waxUrl = 'http://localhost:3000/api/v1'
 
@@ -60,7 +60,8 @@ const AlbumInfo = (props) => {
   const { format, label, released, thumb, title, id } = props.vinyls
   return (
     <>
-        <Card>
+        <Card style={{width: 250}}>
+          {/* <Image size="mini" src={thumb ? thumb : 'https://freesvg.org/img/1536281106.png'} onError={addDefaultSrc} wrapped ui={false} /> */}
           <img src={thumb ? thumb : 'https://freesvg.org/img/1536281106.png'} onError={addDefaultSrc} height={250} width={250} alt={title} />
           <Card.Content>
             <Card.Header>{title}</Card.Header>
@@ -69,6 +70,7 @@ const AlbumInfo = (props) => {
             </Card.Meta>
             <Card.Description>
               {label ? label : props.vinyls.cat_no}<br />
+              
               {/* {format ? format : props.vinyls.size}<br /> */}
               {props.vinyls.notes}
             </Card.Description>
