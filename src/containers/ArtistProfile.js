@@ -115,11 +115,12 @@ const ArtistProfile = (props) => {
             release_id: waxReleaseNum.id,
             thumb: vinylInfo.thumb,
             d_album_id: vinylInfo.id,
-            d_release_id: releaseId,
+            // d_release_id: releaseId,
           }),
           headers: { 'Content-type': 'application/json; charset=UTF-8' }
         })
           .then(response => response.json())
+          .then(vinyl => setVinyls(vinyls => [...vinyls, vinyl]))
           .catch(error => console.log('error during album creation ', error));
 
     })
@@ -134,7 +135,7 @@ const ArtistProfile = (props) => {
         console.log(`all ${findVinyls[0].title} variants`, findVinyls)
         findVinyls = findVinyls.filter(vinyl => vinyl.major_formats.includes('Vinyl'))
         // map thru array of vinyls from selected release
-        findVinyls.map(vinyl => setVinyls(vinyls => [...vinyls, vinyl]))
+        // findVinyls.map(vinyl => setVinyls(vinyls => [...vinyls, vinyl])) --------------------
         // since vinyl record isn't in our DB, let's toss it over to create
         const throttle = throttledQueue(1, 500); // at most make 1 request every .5 seconds.
         findVinyls.map(createVinyl => 

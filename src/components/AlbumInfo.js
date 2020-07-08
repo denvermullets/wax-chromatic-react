@@ -31,41 +31,33 @@ const AlbumInfo = (props) => {
         .catch(error => console.log('error', error))
     }
 
-  const getWaxAlbumId = () => {
-    // if it's already in our db we don't need to look it up
-    const throttle = throttledQueue(1, 1000); // at most make 1 request every .5 seconds.
-      throttle(() => {  
-        if (props.vinyls.d_album_id > 0){
-          console.log('found waxdb album id')
-          setWaxAlbumId(props.vinyls.id)
-        } else {
-          console.log('getting waxdb album id')
-          fetch(`${waxUrl}/albums/${props.vinyls.id}`)
-            .then(response => response.json())
-            .then(album => setWaxAlbumId(album.id))
-            .catch(error => console.log('error fetching album from AlbumInfo.js', error))
-        }
-      })
-  }
+  // const getWaxAlbumId = () => {
+  //   // if it's already in our db we don't need to look it up
+  //   const throttle = throttledQueue(1, 1000); // at most make 1 request every .5 seconds.
+  //     throttle(() => {  
+  //       if (props.vinyls.d_album_id > 0){
+  //         console.log('found waxdb album id')
+  //         setWaxAlbumId(props.vinyls.id)
+  //       } else {
+  //         console.log('getting waxdb album id')
+  //         fetch(`${waxUrl}/albums/${props.vinyls.id}`)
+  //           .then(response => response.json())
+  //           .then(album => setWaxAlbumId(album.id))
+  //           .catch(error => console.log('error fetching album from AlbumInfo.js', error))
+  //       }
+  //     })
+  // }
 
   const addDefaultSrc = (ev) => {
     ev.target.src = 'https://freesvg.org/img/1536281106.png'
   }
 
-useEffect(() => {
-  console.log('useEffect props.vinyls.d_album_id', props.vinyls.d_album_id )
-  console.log('useEffect props.vinyls.id', props.vinyls.id )
-
-  getWaxAlbumId()
-  
-  return () => {
-    setWaxAlbumId('')
-  };
-
-}, []);
+// useEffect(() => {
+//   getWaxAlbumId()
+// }, []);
 
 
-  const { format, label, released, thumb, title } = props.vinyls
+  const { format, label, released, thumb, title, id } = props.vinyls
   return (
     <>
         <Card>
@@ -77,7 +69,7 @@ useEffect(() => {
             </Card.Meta>
             <Card.Description>
               {label ? label : props.vinyls.cat_no}<br />
-              {format ? format : props.vinyls.size}<br />
+              {/* {format ? format : props.vinyls.size}<br /> */}
               {props.vinyls.notes}
             </Card.Description>
           </Card.Content>
@@ -85,13 +77,13 @@ useEffect(() => {
             <div className='ui two buttons'>
             <Button 
               basic color='green' 
-              onClick={() => addToCollection({ collection_id: 1, album_id: waxAlbumId })}
+              onClick={() => addToCollection({ collection_id: 1, album_id: id })}
             >
               Add to Collection
             </Button>
             <Button 
               basic color='orange'
-              onClick={() => addToWantlist({ wantlist_id: 1, album_id: waxAlbumId})}  
+              onClick={() => addToWantlist({ wantlist_id: 1, album_id: id})}  
             >
               Add to Wantlist
             </Button>

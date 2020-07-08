@@ -1,6 +1,6 @@
 import React from 'react';
 import { Table } from 'semantic-ui-react'
-import CollectionItem from './CollectionItem';
+import WantlistItem from './WantlistItem';
 
 
 const CollectionList = (props) => {
@@ -20,8 +20,8 @@ const CollectionList = (props) => {
 
         <Table.Body>
           {
-            // props.vinyls.map(vinyl => <CollectionItem vinyl={vinyl} key={vinyl.id} />)
-            sortedVinyls.map(vinyl => <CollectionItem vinyl={vinyl} key={vinyl.id} />)
+            // props.vinyls.map(vinyl => <WantlistItem vinyl={vinyl} key={vinyl.id} />)
+            sortedVinyls.map(vinyl => <WantlistItem vinyl={vinyl} key={vinyl.id} />)
           }
         </Table.Body>
       </Table>
