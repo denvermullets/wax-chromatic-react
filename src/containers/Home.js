@@ -3,6 +3,7 @@ import SearchBar from '../components/SearchBar';
 import ArtistResult from '../components/ArtistResult';
 import { Card, Container, Header, Button, Icon } from 'semantic-ui-react';
 import LandingSearch from '../components/LandingSearch';
+import '../Landingpage.css';
 
 class Home extends Component {
 
@@ -45,6 +46,7 @@ class Home extends Component {
             />
           })}
         </Card.Group>
+        {/* <div className='imgStyle' /> */}
       </>
     );
   }
