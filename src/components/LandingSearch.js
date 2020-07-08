@@ -1,10 +1,12 @@
 import React from 'react';
+
 import { Container, Header } from 'semantic-ui-react'
 import SearchBar from './SearchBar'
 
 const LandingSearch = (props) => {
   return (
     <>
+      
       <Container text >
         <Header
           as='h1'
@@ -28,6 +30,7 @@ const LandingSearch = (props) => {
             marginBottom: '1em'
           }}
         />
+        
     {/* <br /> */}
         <SearchBar
           hideSearch={props.hideSearch}

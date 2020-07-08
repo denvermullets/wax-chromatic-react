@@ -1,0 +1,13 @@
+.imgStyle {
+  background: url("https://images.unsplash.com/photo-1530288782965-fbad40327074?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=3072&q=80"); 
+  position: fixed;
+  display: block; 
+  width: 100%; 
+  height: 100%; 
+  max-width: 1920px; 
+  max-height: 1080px;
+  z-index: -999999; 
+  background-size:100% 100%;
+  margin-top: -24em;
+  opacity: 0.15;
+}
