@@ -1,5 +1,5 @@
-import React, { useState, useEffect, Component } from 'react';
-import throttledQueue from 'throttled-queue'
+import React, { Component } from 'react';
+// import throttledQueue from 'throttled-queue'
 import CollectionList from '../components/CollectionList';
 
 
