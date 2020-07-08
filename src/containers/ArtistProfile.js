@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 import throttledQueue from 'throttled-queue'
 import ArtistBio from '../components/ArtistBio';
 import AlbumGrid from '../components/AlbumGrid';
+import { Container, Divider } from 'semantic-ui-react';
 
 const url = 'https://api.discogs.com'
 const waxUrl = 'http://localhost:3000/api/v1'
@@ -22,6 +23,7 @@ const requestOptions = {
 const ArtistProfile = (props) => {
   const artistId = props.location.state.artist.id // from router push
 
+  const [ loading, setLoading ] = useState(false)
   const [ artistInfoLoaded, setArtistInfoLoaded ] = useState(false)
   const [ artistInfo, setArtistInfo ] = useState()
   const [ releasesLoaded, setReleasesLoaded ] = useState(false)
@@ -37,6 +39,7 @@ const ArtistProfile = (props) => {
       .then(response => response.json())
       .then(artistInfo => setArtistInfo(artistInfo))
       .then(setArtistInfoLoaded(true))
+      // .then(setLoading(true))
       .catch(error => console.log('error getting artist ', error))
   }
 
@@ -167,6 +170,10 @@ const loadVinyl = () => {
       // make a network request.
       getVinylAlbums(releases[x].id)
     });
+    
+    if (x === releases.length) {
+      setLoading(false)
+    }
   }
 }
 
@@ -176,10 +183,15 @@ const loadWaxVinyl = () => {
 
   const throttle = throttledQueue(1, 500); // at most make 2 request every .2 seconds.
   for (let x = 0; x < releases.length; x++) {
+    setLoading(true)
     throttle(function() {
       // make a network request.
       getWaxAlbums(releases[x].d_release_id)
     });
+    
+    if (x === releases.length) {
+      setLoading(false)
+    }
   }
 }
 
@@ -224,16 +236,20 @@ const loadWaxVinyl = () => {
   let sortedVinyls = vinyls.sort((a,b) => { return a.released < b.released ? -1 : 1 })
   return (
     <>
+        
       <ArtistBio 
         name={artistInfo ? artistInfo.name : null}
         profile={artistInfo ? artistInfo.bio : null}
-      />
+        />
 
-      <AlbumGrid 
+      
+
+      <AlbumGrid centered={true}
         // vinyls={vinyls ? vinyls : null}
         vinyls={sortedVinyls ? sortedVinyls : null}
         artistInfo={artistInfo ? artistInfo : null}
-      /> 
+        loading={loading}
+        /> 
 
     </>
   );

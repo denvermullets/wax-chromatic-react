@@ -1,13 +1,15 @@
 import React, { Component } from 'react';
 import SearchBar from '../components/SearchBar';
 import ArtistResult from '../components/ArtistResult';
-import { Card } from 'semantic-ui-react';
+import { Card, Container, Header, Button, Icon } from 'semantic-ui-react';
+import LandingSearch from '../components/LandingSearch';
 
 class Home extends Component {
 
   state = {
     searchArtists: [],
-    selectedArtist: ''
+    selectedArtist: '',
+    searched: false,
   }
 
 
@@ -20,13 +22,20 @@ class Home extends Component {
     this.setState({ searchArtists: [] })
   }
 
+  hideSearch = () => {
+    this.setState({searched: !this.state.searched})
+  }
+
   render() {
 
     return (
       <>
-        <SearchBar
-          setArtists={this.setArtists} 
-        />
+        {this.state.searched ? null : <LandingSearch 
+          setArtists={this.setArtists}
+          hideSearch={this.hideSearch}
+        /> }
+
+
         <Card.Group>
           {this.state.searchArtists.map(artist => {
             return <ArtistResult

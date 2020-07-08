@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 // import throttledQueue from 'throttled-queue'
 import CollectionList from '../components/CollectionList';
+import { Container, Header } from 'semantic-ui-react';
 
 
 const waxUrl = 'http://localhost:3000/api/v1'
@@ -55,9 +56,14 @@ class Collection extends Component {
   render() {
     return (
       <>
-      <CollectionList 
-        vinyls={this.state.vinylAlbums}
-        />
+      <Container>
+        <Header as={'h1'}>
+          My Collection
+        </Header>
+        <CollectionList 
+          vinyls={this.state.vinylAlbums}
+          />
+      </Container>
     </>
     );
   }
