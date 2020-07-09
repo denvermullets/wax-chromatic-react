@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Card, Icon } from 'semantic-ui-react'
+import { Card, Icon, Container } from 'semantic-ui-react'
 import { Link } from 'react-router-dom'
 
 class ArtistResult extends Component {
@@ -13,6 +13,8 @@ class ArtistResult extends Component {
     const { cover_image, title } = this.props.artist
     return (
       <>
+      
+
         <Card>
           <img src={cover_image} onError={this.addDefaultSrc} height={275} alt={title} />
           <Card.Content>
@@ -29,6 +31,7 @@ class ArtistResult extends Component {
           </Link>
           </Card.Content>
         </Card>
+
       </>
     );
   }

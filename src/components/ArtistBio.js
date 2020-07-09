@@ -5,8 +5,8 @@ const ArtistBio = (props) => {
   return (
     <>
       <Container text >
-        <Header size='large'>{props.name}</Header>
-        <Header as='h2'>Biography</Header>
+        <Header size='huge'>{props.name}</Header>
+        <Header size='medium'>Biography</Header>
           <p>
             {props.profile}
           </p>

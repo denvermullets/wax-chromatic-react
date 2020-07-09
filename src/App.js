@@ -8,6 +8,7 @@ import NavBar from './components/NavBar'
 import LoginPage from './containers/LoginPage'
 import UserProfile from './containers/UserProfile';
 import ArtistProfile from './containers/ArtistProfile';
+import ReleasePage from './containers/ReleasePage'
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
         <Route path="/profile" component={UserProfile}/>
         <Route path="/login" component={LoginPage}/>
         <Route path="/artist" component={ArtistProfile}/>
+        <Route path="/release" component={ReleasePage}/>
         {/* <Route path="/help" render={(routerProps) => <Help urgency={5} {...routerProps}/>}/> */}
         <Route path="/" component={Home}/>
       </Switch>
