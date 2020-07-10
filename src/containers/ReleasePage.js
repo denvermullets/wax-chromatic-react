@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Header, Container, Grid, Image } from 'semantic-ui-react';
+import { Header, Container } from 'semantic-ui-react';
 import TrackList from '../components/TrackList';
 import VariantList from '../components/VariantList';
 
