@@ -1,9 +1,6 @@
 import React, { useState, useEffect } from 'react';
-// import { throttle } from 'throttle-debounce';
-import throttledQueue from 'throttled-queue'
+// import throttledQueue from 'throttled-queue'
 import ArtistBio from '../components/ArtistBio';
-import AlbumGrid from '../components/AlbumGrid';
-import { Container, Divider } from 'semantic-ui-react';
 import ReleaseGrid from '../components/ReleaseGrid';
 
 const url = 'https://api.discogs.com'

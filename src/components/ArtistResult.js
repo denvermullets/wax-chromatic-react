@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Card, Icon, Container } from 'semantic-ui-react'
+import { Card, Icon } from 'semantic-ui-react'
 import { Link } from 'react-router-dom'
 
 class ArtistResult extends Component {

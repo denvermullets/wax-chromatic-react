@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
-import SearchBar from '../components/SearchBar';
 import ArtistResult from '../components/ArtistResult';
-import { Card, Container, Header, Button, Icon } from 'semantic-ui-react';
+import { Card } from 'semantic-ui-react';
 import LandingSearch from '../components/LandingSearch';
 import '../Landingpage.css';
 

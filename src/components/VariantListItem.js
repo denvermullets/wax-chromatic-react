@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Item, Image, Label, Icon, Button} from 'semantic-ui-react'
+import { Item, Label, Button} from 'semantic-ui-react'
 
 const url = 'https://api.discogs.com'
 const waxUrl = 'http://localhost:3000/api/v1'
@@ -17,6 +17,7 @@ const requestOptions = {
 }
 
 const VariantListItem = (props) => {
+  const { thumb, title, cat_no, released, d_album_id, notes, id } = props.vinyl
 
   const [ vinyl, setVinyl ] = useState([])
   const [ inCollection, setInCollection ] = useState(false)
@@ -28,7 +29,7 @@ const VariantListItem = (props) => {
 
   const checkAgainstWantlist = () => {
     console.log('checking wantlist to see if on list')
-    props.wantlist.map(record => {
+    props.wantlist.forEach(record => {
       if (record.album_id === props.vinyl.id ){
         setInWantList(true)
       } else {
@@ -39,7 +40,7 @@ const VariantListItem = (props) => {
 
   const checkAgainstCollectionlist = () => {
     console.log('checking wantlist to see if on list')
-    props.collection.map(record => {
+    props.collection.forEach(record => {
       if (record.album_id === props.vinyl.id ){
         setInCollection(true)
       } else {
@@ -107,6 +108,7 @@ const VariantListItem = (props) => {
 
   const loadVariantInfo = () => {
     // 6273710
+    console.log('loading variants')
     fetch(`${url}/releases/${d_album_id}`, requestOptions)
       .then(response => response.json())
       .then(vinyl => setVinyl(vinyl))
@@ -121,7 +123,7 @@ const VariantListItem = (props) => {
     checkAgainstCollectionlist()
   }, []);
 
-  const { thumb, title, cat_no, released, d_album_id, notes, id } = props.vinyl
+  
   return (
     <>
       <Item>

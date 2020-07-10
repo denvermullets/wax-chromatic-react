@@ -1,5 +1,5 @@
 import React from 'react';
-import { Card, Button, Icon } from 'semantic-ui-react'
+import { Card, Icon } from 'semantic-ui-react'
 import { Link } from 'react-router-dom'
 
 
@@ -8,7 +8,7 @@ const ReleaseInfo = (props) => {
   const addDefaultSrc = (ev) => {
     ev.target.src = 'https://freesvg.org/img/1536281106.png'
   }
-  const { artist, year, thumb, title, id } = props.release
+  const { year, thumb, title, id } = props.release
   return (
     <Card style={{width: 250}}>
     {/* <Image size="mini" src={thumb ? thumb : 'https://freesvg.org/img/1536281106.png'} onError={addDefaultSrc} wrapped ui={false} /> */}

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Table, Container, Grid, Image } from 'semantic-ui-react'
+import { Table } from 'semantic-ui-react'
 import TrackListItem from './TrackListItem'
 
 
