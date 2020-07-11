@@ -29,8 +29,6 @@ const ArtistProfile = (props) => {
     fetch(`${waxUrl}/artists/${artistId}`)
       .then(response => response.json())
       .then(artistInfo => setArtistInfo(artistInfo))
-      // .then(setArtistInfoLoaded(true))
-      // .then(setLoading(true))
       .catch(error => console.log('error getting artist ', error))
   }
 
@@ -55,14 +53,6 @@ const ArtistProfile = (props) => {
         artistInfo={artistInfo}
       /> 
       : null }
-
-
-      {/* <AlbumGrid centered={true}
-        // vinyls={vinyls ? vinyls : null}
-        vinyls={sortedVinyls ? sortedVinyls : null}
-        artistInfo={artistInfo ? artistInfo : null}
-        loading={loading}
-        />  */}
 
     </>
   );
