@@ -1,5 +1,6 @@
 import React from 'react';
 import { Container, Header } from 'semantic-ui-react'
+import Members from '../containers/Members';
 
 const ArtistBio = (props) => {
   return (
@@ -10,6 +11,8 @@ const ArtistBio = (props) => {
           <p>
             {props.profile}
           </p>
+
+        <Members artistId={props.artistId}/>
       </Container>
     </>
   );
