@@ -45,7 +45,6 @@ class Home extends Component {
             />
           })}
         </Card.Group>
-        {/* <div className='imgStyle' /> */}
       </>
     );
   }

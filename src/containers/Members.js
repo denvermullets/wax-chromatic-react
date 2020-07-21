@@ -7,8 +7,8 @@ const waxUrl = 'http://localhost:3000/api/v1'
 
 const Members = (props) => {
   const artistId = props.artistId
-  const [ activeMembers, setActiveMembers ] = useState([])
-  const [ inActiveMembers, setInActiveMembers ] = useState([])
+  const [ activeMembers, setActiveMembers ] = useState()
+  const [ inActiveMembers, setInActiveMembers ] = useState()
 
   useEffect(() => {
     // look up artist members by waxDb artist id - returns array with object showing active state
@@ -20,14 +20,19 @@ const Members = (props) => {
           const currentMembers = allMembers
             .filter(member => member.member_artists
               .some(isActive => isActive.active_member === true))
-              // console.log(currentMembers)
-          setActiveMembers(currentMembers)
+          // single artists don't have 'members'
+          if (currentMembers.length > 0){
+            setActiveMembers(currentMembers)
+          }
 
           const oldMembers = allMembers
             .filter(member => member.member_artists
               .some(isActive => isActive.active_member === false))
               // console.log(oldMembers)
-          setInActiveMembers(oldMembers)
+          // bands can have no old members, just don't set an array in state to avoid showing up
+          if (oldMembers.length > 0){
+            setInActiveMembers(oldMembers)
+          }
         })
     }
   }, [artistId]);
