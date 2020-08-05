@@ -20,7 +20,6 @@ const LoginPage = () => {
 
   return (
     <>
-      Hi, did you login buddy
     </>
   );
 }
