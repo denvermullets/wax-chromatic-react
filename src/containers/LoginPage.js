@@ -14,12 +14,13 @@ const LoginPage = () => {
 
   useEffect(() => {
     if (authToken) {
-      window.open(authToken)
+      window.open(authToken, '_self')
     }
   }, [authToken]);
 
   return (
     <>
+      We should put a disclaimer or explanation about the process here - maybe only if api is slow, otherwise blank page could be fine when not logged in
     </>
   );
 }

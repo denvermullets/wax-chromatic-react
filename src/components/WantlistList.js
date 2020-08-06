@@ -22,7 +22,7 @@ const WantlistList = (props) => {
         <Table.Body>
           {
             // props.vinyls.map(vinyl => <WantlistItem vinyl={vinyl} key={vinyl.id} />)
-            sortedVinyls.map(vinyl => <WantlistItem vinyl={vinyl} key={vinyl.id} />)
+            sortedVinyls.map((vinyl, index) => <WantlistItem vinyl={vinyl} key={index} />)
           }
         </Table.Body>
       </Table>

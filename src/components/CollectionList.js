@@ -22,7 +22,7 @@ const CollectionList = (props) => {
         <Table.Body>
           {
             // props.vinyls.map(vinyl => <CollectionItem vinyl={vinyl} key={vinyl.id} />)
-            sortedVinyls.map(vinyl => <CollectionItem vinyl={vinyl} key={vinyl.id} />)
+            sortedVinyls.map((vinyl, index) => <CollectionItem vinyl={vinyl} key={index} />)
           }
         </Table.Body>
       </Table>
