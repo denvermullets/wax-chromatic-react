@@ -6,6 +6,8 @@ import { Container, Header } from 'semantic-ui-react';
 
 const waxUrl = 'http://localhost:3000/api/v1'
 
+// currently defaults to just the 1 test user, need to add ability for each user to have wantlist
+
 class Collection extends Component {
   state = {
     collectionAlbums: [],

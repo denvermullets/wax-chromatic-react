@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { Card, Button } from 'semantic-ui-react'
-// import throttledQueue from 'throttled-queue'
 
 const waxUrl = 'http://localhost:3000/api/v1'
 
@@ -70,7 +69,6 @@ const AlbumInfo = (props) => {
             </Card.Meta>
             <Card.Description>
               {label ? label : props.vinyls.cat_no}<br />
-              
               {/* {format ? format : props.vinyls.size}<br /> */}
               {props.vinyls.notes}
             </Card.Description>
