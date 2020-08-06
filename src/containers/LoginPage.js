@@ -1,22 +1,23 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 
 const LoginPage = () => {
   
-  const [ authToken, setAuthToken ] = useState()
-
+  const updateLocalStorage = (info) => {
+    localStorage.setItem("waxChromatics", JSON.stringify(info))
+    let waxChromatics = JSON.parse(localStorage.getItem("waxChromatics"))
+    window.open(waxChromatics.discogs, '_self')
+  }
+  
   useEffect(() => {
-    console.log('hi buddy')
-    fetch('http://localhost:3000/api/v1/users')
-      .then(response => response.json())
-      .then(authToken => setAuthToken(authToken.discogs))
-
+        let waxChromaticsStorage = JSON.parse(localStorage.getItem("waxChromatics" || "{}"))
+        // load local storage to see if previously authenticated - tokens don't expire unless revoked by user
+        if (!waxChromaticsStorage) {
+          // if no access_token found
+            fetch('http://localhost:3000/api/v1/users')
+              .then(response => response.json())
+              .then(fullObject => updateLocalStorage(fullObject))
+        }
   }, []);
-
-  useEffect(() => {
-    if (authToken) {
-      window.open(authToken, '_self')
-    }
-  }, [authToken]);
 
   return (
     <>
