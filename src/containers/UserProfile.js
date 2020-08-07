@@ -1,10 +1,11 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import queryString from "query-string";
+import { Button } from 'semantic-ui-react'
 
 const waxUrl = 'http://localhost:3000/api/v1'
 
 const UserProfile = () => {
-  
+  const [ userInfo, setUserInfo ] = useState()
   
   useEffect(() => {
     const waxChromatics = JSON.parse(localStorage.getItem("waxChromatics"))
@@ -17,7 +18,7 @@ const UserProfile = () => {
 
   return (
     <>
-      You're logged in?
+      Welcome
     </>
   );
 }

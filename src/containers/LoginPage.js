@@ -13,7 +13,7 @@ const LoginPage = () => {
         // load local storage to see if previously authenticated - tokens don't expire unless revoked by user
         if (!waxChromaticsStorage) {
           // if no access_token found
-            fetch('http://localhost:3000/api/v1/users')
+            fetch('http://localhost:3000/api/v1/users/login')
               .then(response => response.json())
               .then(fullObject => updateLocalStorage(fullObject))
         }
