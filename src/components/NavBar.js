@@ -44,14 +44,26 @@ class NavBar extends Component {
         </Menu.Item>
 
         <Menu.Menu position='right'>
-          <Menu.Item
-            as={Link} to="/login"
-            name='login'
-            active={activeItem === 'login'}
+          {this.props.username ? 
+            <Menu.Item
+            as={Link} to="/profile"
+            name='profile'
+            active={activeItem === 'profile'}
             onClick={this.handleItemClick}
           >
-            Logout
-          </Menu.Item>
+              {this.props.username}
+            </Menu.Item>
+              :
+            
+            <Menu.Item
+              as={Link} to="/login"
+              name='login'
+              active={activeItem === 'login'}
+              onClick={this.handleItemClick}
+            >
+              Login
+            </Menu.Item>
+          }
         </Menu.Menu>
       </Menu>
       </>
