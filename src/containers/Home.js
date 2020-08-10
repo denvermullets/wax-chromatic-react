@@ -4,6 +4,7 @@ import { Card } from 'semantic-ui-react';
 import LandingSearch from '../components/LandingSearch';
 import '../Landingpage.css';
 
+
 class Home extends Component {
 
   state = {
@@ -11,7 +12,6 @@ class Home extends Component {
     selectedArtist: '',
     searched: false,
   }
-
 
   setArtists = (searchResults) => {
     this.setState({ searchArtists: searchResults.results})
