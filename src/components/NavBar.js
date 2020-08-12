@@ -20,7 +20,7 @@ class NavBar extends Component {
         <Menu.Item
           as={Link} to="/"
           name='home'
-          active={activeItem === 'home'}
+          active={activeItem === ''}
           onClick={this.handleItemClick}
         >
           Wax Chromatics
@@ -63,6 +63,19 @@ class NavBar extends Component {
             >
               Login
             </Menu.Item>
+          }
+          {
+            this.props.loggedIn ? 
+            <Menu.Item 
+              as={Link} to="/logout"
+              name='logout'
+              active={activeItem === ''}
+              onClick={this.handleItemClick}
+            >
+              Logout
+            </Menu.Item>
+            :
+            null
           }
         </Menu.Menu>
       </Menu>

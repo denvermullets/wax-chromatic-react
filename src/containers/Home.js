@@ -26,6 +26,8 @@ class Home extends Component {
     this.setState({searched: !this.state.searched})
   }
 
+  
+
   render() {
 
     return (
