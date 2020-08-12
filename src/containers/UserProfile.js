@@ -1,12 +1,12 @@
-import React, { useEffect, useState } from 'react';
-import queryString from "query-string";
-import { Button } from 'semantic-ui-react'
+import React, { useEffect } from 'react';
+// import queryString from "query-string";
+// import { Button } from 'semantic-ui-react'
 
-const waxUrl = 'http://localhost:3000/api/v1'
+// const waxUrl = 'http://localhost:3000/api/v1'
 
 const UserProfile = (props) => {
   
-  useEffect(() => {
+  // useEffect(() => {
     
     // if (!props.username) {
     //   console.log('UserProfile::useEffect - should only fire on new account login, not repeat visitor')
@@ -24,7 +24,7 @@ const UserProfile = (props) => {
     //   console.log('should load username on reload without getting access token')
     //   props.updateUsername(waxChromatics.name)      
     // } 
-  }, []);
+  // }, []);
 
   // useEffect(() => {
   //   const waxChromatics = JSON.parse(localStorage.getItem("waxChromatics" || "{}"))
