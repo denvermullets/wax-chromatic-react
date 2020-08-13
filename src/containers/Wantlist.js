@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
-// import throttledQueue from 'throttled-queue'
 import WantlistList from '../components/WantlistList';
 import { Container, Header } from 'semantic-ui-react';
-
 
 const waxUrl = 'http://localhost:3000/api/v1'
 

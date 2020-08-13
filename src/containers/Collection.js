@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
-// import throttledQueue from 'throttled-queue'
 import CollectionList from '../components/CollectionList';
 import { Container, Header } from 'semantic-ui-react';
-
 
 const waxUrl = 'http://localhost:3000/api/v1'
 
@@ -19,7 +17,6 @@ class Collection extends Component {
       .then(albums => this.setState({collectionAlbums: albums}))
       .catch(error => console.log('error getting collection', error))
   }
-
 
   loadVinyls = () => {
     console.log('iterating thru collection')
@@ -50,8 +47,6 @@ class Collection extends Component {
   componentDidMount() {
     this.getCollection()
   }
-
-  
 
   render() {
     return (

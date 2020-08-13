@@ -6,10 +6,7 @@ const waxUrl = 'http://localhost:3000/api/v1'
 
 const ArtistProfile = (props) => {
   const artistId = props.location.state.artist.id // from router push
-
   const [ artistInfo, setArtistInfo ] = useState()
-
-  ////
     // first let's get artist profile
   useEffect(() => {
     console.log('checking for artist ', artistId)
@@ -21,19 +18,16 @@ const ArtistProfile = (props) => {
 
   return (
     <>
-        
       <ArtistBio 
         name={artistInfo ? artistInfo.name : null}
         profile={artistInfo ? artistInfo.bio : null}
         artistId={artistInfo ? artistInfo.id : null}
         />
-
       { artistInfo ? 
         <ReleaseGrid
         artistInfo={artistInfo}
       /> 
       : null }
-
     </>
   );
 }

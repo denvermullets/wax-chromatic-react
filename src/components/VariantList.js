@@ -2,11 +2,9 @@ import React, { useState, useEffect } from 'react';
 import { Item } from 'semantic-ui-react'
 import VariantListItem from './VariantListItem';
 
-
 const waxUrl = 'http://localhost:3000/api/v1'
 
 const VariantList = (props) => {
-
   const [ collection, setCollection ] = useState([])
   const [ wantList, setWantlist ] = useState([])
   const [ count, setCount ] = useState(0)

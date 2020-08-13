@@ -4,9 +4,7 @@ import { Card } from 'semantic-ui-react';
 import LandingSearch from '../components/LandingSearch';
 import '../Landingpage.css';
 
-
 class Home extends Component {
-
   state = {
     searchArtists: [],
     selectedArtist: '',
@@ -26,8 +24,6 @@ class Home extends Component {
     this.setState({searched: !this.state.searched})
   }
 
-  
-
   render() {
 
     return (
@@ -36,8 +32,6 @@ class Home extends Component {
           setArtists={this.setArtists}
           hideSearch={this.hideSearch}
         /> }
-
-
         <Card.Group>
           {this.state.searchArtists.map(artist => {
             return <ArtistResult
