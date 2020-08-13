@@ -1,19 +1,15 @@
 import React from 'react';
-
 import { Container, Header } from 'semantic-ui-react'
 import SearchBar from './SearchBar'
 
 const LandingSearch = (props) => {
   return (
     <>
-      
       <Container text >
         <Header
           as='h1'
           content='Wax Chromatics'
           style={{
-            
-            // backgroundSize: 'cover',
             fontSize: '4em',
             fontWeight: 'normal',
             marginBottom: 0,
@@ -30,8 +26,6 @@ const LandingSearch = (props) => {
             marginBottom: '1em'
           }}
         />
-        
-    {/* <br /> */}
         <SearchBar
           hideSearch={props.hideSearch}
           setArtists={props.setArtists} 

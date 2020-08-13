@@ -1,4 +1,3 @@
-// maybe uninstall lodash
 import React, { useState } from 'react';
 import { Input } from 'semantic-ui-react'
 
@@ -34,7 +33,6 @@ const SearchPage = (props) => {
       
     fetch(`https://api.discogs.com/database/search?q=${search}&type=artist`, requestOptions)
       .then(response => response.json())
-      // .then(result => console.log(result))
       .then(results => props.setArtists(results))
       .then(setSearch(''))
       .then(() => props.hideSearch())

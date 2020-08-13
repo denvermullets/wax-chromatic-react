@@ -1,9 +1,7 @@
 import React, { useState, useEffect } from 'react';
-// import { throttle } from 'throttle-debounce';
 import throttledQueue from 'throttled-queue'
 import ArtistBio from '../components/ArtistBio';
 import AlbumGrid from '../components/AlbumGrid';
-import { Container, Divider } from 'semantic-ui-react';
 
 const url = 'https://api.discogs.com'
 const waxUrl = 'http://localhost:3000/api/v1'
