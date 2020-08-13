@@ -19,21 +19,19 @@ class App extends Component {
   }
 
   componentDidMount() {
-    this.updateUserInfo()
+    this.checkLoggedIn()
   }
 
-  updateUserInfo = () => {
-    console.log('App::updateUserInfo - should be updating state of username')
-    const waxChromatics = JSON.parse(localStorage.getItem("waxChromatics" || "{}"))
-    
-    if (!waxChromatics) {
+  checkLoggedIn = () => {
+    const waxUser = JSON.parse(localStorage.getItem("waxUser"))
+    if (!waxUser) {
       return
     } else {
-      this.setState({discogs_id: waxChromatics.discogs_id})
-      this.setState({username: waxChromatics.name})
+      this.setState({username: waxUser.username})
+      this.setState({loggedIn: true})
     }
   }
-
+  
   updateUsername = (username) => {
     this.setState({username})
   }
