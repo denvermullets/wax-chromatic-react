@@ -40,7 +40,8 @@ class LoginForm extends Component {
             'name': result.user.name,
             'oauth_token': result.user.oauth_token,
             'oauth_token_secret': result.user.oauth_token_secret,
-            'token': result.jwt
+            'token': result.jwt,
+            'id': result.user.id
           }
           localStorage.setItem('waxUser', JSON.stringify(userInfo))
           this.props.userLoggedIn()
