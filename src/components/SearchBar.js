@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { Input } from 'semantic-ui-react'
 
-
 const SearchPage = (props) => {
   const [ search, setSearch ] = useState('')
 
@@ -16,10 +15,8 @@ const SearchPage = (props) => {
   }
   
   const executeSearch = () => {
-  
     const discogsKey = `key=${process.env.REACT_APP_DISCOGS_KEY},`
     const discogsSecret = `secret=${process.env.REACT_APP_DISCOGS_SECRET}`
-    
     const discogsHeaders = {
       "Content-Type": "application/json",
       "Authorization": `Discogs ${discogsKey} ${discogsSecret}`,
@@ -41,16 +38,16 @@ const SearchPage = (props) => {
 
   return (
     <>
-    <Input 
-          action={{
-            icon: "search",
-            onClick: () => executeSearch()
-          }}
-          value={search}
-          onKeyPress={onKeyPress}
-          placeholder='Search...' 
-          onChange={handleSearchChange}
-        />
+      <Input 
+        action={{
+          icon: "search",
+          onClick: () => executeSearch()
+        }}
+        value={search}
+        onKeyPress={onKeyPress}
+        placeholder='Search...' 
+        onChange={handleSearchChange}
+      />
     </>
   );
 }

@@ -13,26 +13,29 @@ const Members = (props) => {
   useEffect(() => {
     // look up artist members by waxDb artist id - returns array with object showing active state
     // then filter and split information based on current active status
+    const waxUser = JSON.parse(localStorage.getItem("waxUser"))
     if (artistId) {
-      fetch(`${waxUrl}/members/active/${artistId}`)
-        .then(response => response.json())
-        .then(allMembers => {
-          const currentMembers = allMembers
-            .filter(member => member.member_artists
-              .some(isActive => isActive.active_member === true))
-          // single artists don't have 'members'
-          if (currentMembers.length > 0){
-            setActiveMembers(currentMembers)
-          }
+      fetch(`${waxUrl}/members/active/${artistId}`, {
+        method: 'GET',
+        headers: {Authorization: `Bearer ${waxUser.token}`}})
+          .then(response => response.json())
+          .then(allMembers => {
+            const currentMembers = allMembers
+              .filter(member => member.member_artists
+                .some(isActive => isActive.active_member === true))
+            // single artists don't have 'members'
+            if (currentMembers.length > 0){
+              setActiveMembers(currentMembers)
+            }
 
-          const oldMembers = allMembers
-            .filter(member => member.member_artists
-              .some(isActive => isActive.active_member === false))
-              // console.log(oldMembers)
-          // bands can have no old members, just don't set an array in state to avoid showing up
-          if (oldMembers.length > 0){
-            setInActiveMembers(oldMembers)
-          }
+            const oldMembers = allMembers
+              .filter(member => member.member_artists
+                .some(isActive => isActive.active_member === false))
+                // console.log(oldMembers)
+            // bands can have no old members, just don't set an array in state to avoid showing up
+            if (oldMembers.length > 0){
+              setInActiveMembers(oldMembers)
+            }
         })
     }
   }, [artistId]);

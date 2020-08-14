@@ -38,18 +38,23 @@ const ReleasePage = (props) => {
   const getRelease = () => {
     // get release variants
     console.log('checking for release ', releaseId)
-    fetch(`${waxUrl}/albums/release?album=${releaseId}&artist=${artistId}`)
-      .then(response => response.json())
-      .then(variants => setVariants(variants))
-      .catch(error => console.log('error getting artist ', error))
+    const waxUser = JSON.parse(localStorage.getItem("waxUser"))
+    fetch(`${waxUrl}/albums/release?album=${releaseId}&artist=${artistId}`, {
+      method: 'GET',
+      headers: {Authorization: `Bearer ${waxUser.token}`}})
+        .then(response => response.json())
+        // .then(r => console.log(r))
+        .then(variants => setVariants(variants))
+        .catch(error => console.log('error getting artist ', error))
   }
 
   useEffect(() => {
+    console.log('release id', releaseId)
+    console.log('artistId', artistId)
     getRelease()
-    getReleaseInfo()
+    // getReleaseInfo()
   }, []);
 
-  
   return (
     <>
       <Container >

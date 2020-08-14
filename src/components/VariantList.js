@@ -11,16 +11,22 @@ const VariantList = (props) => {
 
   const checkCollectionlist = () => {
     console.log('update collection?')
-    fetch(`${waxUrl}/collection_albums`)
-      .then(response => response.json())
-      .then(collection => setCollection(collection))
+    const waxUser = JSON.parse(localStorage.getItem("waxUser"))
+    fetch(`${waxUrl}/collection_albums`, {
+      method: 'GET',
+      headers: {Authorization: `Bearer ${waxUser.token}`}})
+        .then(response => response.json())
+        .then(collection => setCollection(collection))
   }
 
   const checkWantlist = () => {
     console.log('updating wantlist?')
-    fetch(`${waxUrl}/wantlist_albums`)
-      .then(response => response.json())
-      .then(wantList => setWantlist(wantList))
+    const waxUser = JSON.parse(localStorage.getItem("waxUser"))
+    fetch(`${waxUrl}/wantlist_albums`, {
+      method: 'GET',
+      headers: {Authorization: `Bearer ${waxUser.token}`}})
+        .then(response => response.json())
+        .then(wantList => setWantlist(wantList))
   }
 
   const updateCount = () => {
@@ -30,16 +36,22 @@ const VariantList = (props) => {
   useEffect(() => {
     // checkCollectionlist()
     console.log('update collection?')
-    fetch(`${waxUrl}/collection_albums`)
-      .then(response => response.json())
-      .then(collection => setCollection(collection))
+    const waxUser = JSON.parse(localStorage.getItem("waxUser"))
+    fetch(`${waxUrl}/collection_albums`, {
+      method: 'GET',
+      headers: {Authorization: `Bearer ${waxUser.token}`}})
+        .then(response => response.json())
+        .then(collection => setCollection(collection))
   }, [count]);
   
   useEffect(() => {
     // checkWantlist()
-    fetch(`${waxUrl}/wantlist_albums`)
-      .then(response => response.json())
-      .then(wantList => setWantlist(wantList))
+    const waxUser = JSON.parse(localStorage.getItem("waxUser"))
+    fetch(`${waxUrl}/wantlist_albums`, {
+      method: 'GET',
+      headers: {Authorization: `Bearer ${waxUser.token}`}})
+        .then(response => response.json())
+        .then(wantList => setWantlist(wantList))
   }, [count]);
 
 

@@ -13,8 +13,6 @@ class ArtistResult extends Component {
     const { cover_image, title } = this.props.artist
     return (
       <>
-      
-
         <Card>
           <img src={cover_image} onError={this.addDefaultSrc} height={275} alt={title} />
           <Card.Content>
@@ -31,7 +29,6 @@ class ArtistResult extends Component {
           </Link>
           </Card.Content>
         </Card>
-
       </>
     );
   }

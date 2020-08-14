@@ -2,18 +2,13 @@ import React, { Component } from 'react';
 import { Menu } from 'semantic-ui-react'
 import { Link } from 'react-router-dom'
 
-// use query string to determine page url? maybe setup history to force update
-
 class NavBar extends Component {
-
   state = {}
 
   handleItemClick = (e, { name }) => this.setState({ activeItem: name })
-
-  render() {
-    
+  
+  render() {  
     const { activeItem } = this.state
-
     return (
       <>
         <Menu inverted>
