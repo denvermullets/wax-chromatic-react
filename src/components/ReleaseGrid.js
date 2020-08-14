@@ -13,10 +13,13 @@ const ReleaseGrid = (props) => {
   useEffect(() => {
     // get first page of artist releases and then filter out non parent (master) releases and only albums that are mainly by artist (no collabs cur)
     console.log(`loading ${name} releases`, d_artist_id)
-    fetch(`${waxUrl}/releases/artist/${d_artist_id}`)
-      .then(response => response.json())
-      .then(artistReleases => setArtistReleases(artistReleases))
-      .catch(error => console.log('error', error));
+    const waxUser = JSON.parse(localStorage.getItem("waxUser"))
+    fetch(`${waxUrl}/releases/artist/${d_artist_id}`, {
+      method: 'GET',
+      headers: {Authorization: `Bearer ${waxUser.token}`}})
+        .then(response => response.json())
+        .then(artistReleases => setArtistReleases(artistReleases))
+        .catch(error => console.log('error', error));
   }, [d_artist_id, name]);
 
   return (

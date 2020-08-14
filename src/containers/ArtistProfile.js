@@ -10,7 +10,10 @@ const ArtistProfile = (props) => {
     // first let's get artist profile
   useEffect(() => {
     console.log('checking for artist ', artistId)
-    fetch(`${waxUrl}/artists/${artistId}`)
+    const waxUser = JSON.parse(localStorage.getItem("waxUser"))
+    fetch(`${waxUrl}/artists/${artistId}`, {
+      method: 'GET',
+      headers: {Authorization: `Bearer ${waxUser.token}`}})
       .then(response => response.json())
       .then(artistInfo => setArtistInfo(artistInfo))
       .catch(error => console.log('error getting artist ', error))
