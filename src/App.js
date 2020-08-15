@@ -16,6 +16,8 @@ class App extends Component {
   state = {
     username: '',  
     loggedIn: false,
+    collection: [],
+    wantlist: [],
   }
 
   componentDidMount() {
@@ -38,6 +40,10 @@ class App extends Component {
 
   userLoggedIn = () => {
     this.setState({loggedIn: !this.state.loggedIn})
+  }
+
+  updateCollection = (newCollection) => {
+    this.setState({collection: newCollection})
   }
 
   render() {
