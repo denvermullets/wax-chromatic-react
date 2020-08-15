@@ -3,7 +3,8 @@ import { Table, Button } from 'semantic-ui-react'
 
 const WishlistItem = (props) => {
   
-  const { released, title, cat_no, notes, artist} = props.vinyl
+  const { released, title, cat_no, notes } = props.vinyl.album
+  const { artist } = props.vinyl.album.release
   return (
     <>
       <Table.Row>

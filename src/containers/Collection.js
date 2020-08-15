@@ -5,22 +5,17 @@ import { Container, Header } from 'semantic-ui-react';
 const waxUrl = 'http://localhost:3000/api/v1'
 
 class Collection extends Component {
-  state = {
-    collection: [],
-    vinylAlbums: [],
-  }
-
+  
   loadCollection = () => {
     const waxUser = JSON.parse(localStorage.getItem("waxUser"))
     fetch(`${waxUrl}/collections/${waxUser.id}`, {
       method: 'GET',
       headers: {Authorization: `Bearer ${waxUser.token}`}})
         .then(response => response.json())
-        .then(albums => this.setState({collection: albums}))
+        .then(albums => this.props.updateCollection(albums))
   }
 
   componentDidMount() {
-    // this.getCollection()
     this.loadCollection()
   }
 
@@ -32,7 +27,7 @@ class Collection extends Component {
           My Collection
         </Header>
         <CollectionList 
-          vinyls={this.state.vinylAlbums}
+          vinyls={this.props.collection}
           />
       </Container>
     </>

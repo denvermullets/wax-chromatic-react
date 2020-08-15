@@ -27,6 +27,7 @@ const ReleasePage = (props) => {
   const getReleaseInfo = () => {
     // this is just a way to get the actual album info from discogs since it's not stored in my db yet
     // contains tracklisting and other misc info for parent release
+    // TODO need to import tracklist to DB
     console.log('checking for albuminfo / master info ', releaseId)
     fetch(`${url}/masters/${releaseId}`, requestOptions)
       .then(response => response.json())
@@ -52,7 +53,7 @@ const ReleasePage = (props) => {
     console.log('release id', releaseId)
     console.log('artistId', artistId)
     getRelease()
-    // getReleaseInfo()
+    getReleaseInfo()
   }, []);
 
   return (
