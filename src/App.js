@@ -46,6 +46,10 @@ class App extends Component {
     this.setState({collection: newCollection})
   }
 
+  updateWantlist = (newWantlist) => {
+    this.setState({wantlist: newWantlist})
+  }
+
   render() {
     return (
       <>
@@ -54,8 +58,8 @@ class App extends Component {
       />
       <Switch>
         {/* <Route path="/pets/:id" component={PetProfile}/> */}
-        <Route path="/collection" component={Collection}/> 
-        <Route path="/wantlist" component={Wantlist}/>
+        <Route path="/collection" render={() => <Collection updateCollection={this.updateCollection} collection={this.state.collection}/>}/> 
+        <Route path="/wantlist" render={() => <Wantlist updateWantlist={this.updateWantlist} wantlist={this.state.wantlist}/>}/>
         <Route path="/profile" render={() => <UserProfile username={this.state.username}/>}/>
         <Route path="/login" render={() => <LoginPage updateUsername={this.updateUsername} userLoggedIn={this.userLoggedIn} loggedIn={this.state.loggedIn} />}/>
         <Route path="/signup" render={() => <NewUserPage updateUsername={this.updateUsername} userLoggedIn={this.userLoggedIn} loggedIn={this.state.loggedIn} />}/>
