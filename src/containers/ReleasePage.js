@@ -67,7 +67,15 @@ const ReleasePage = (props) => {
         </Header.Content>
       </Header>
       
-        <VariantList variants={variants.albums} collection={props.collection} wantlist={props.wantlist} />      
+        <VariantList 
+          variants={variants.albums}
+          collection={props.collection}
+          wantlist={props.wantlist}
+          addVinylToCollection={props.addVinylToCollection}
+          removeVinylFromCollection={props.removeVinylFromCollection}
+          addVinylToWantlist={props.addVinylToWantlist} 
+          removeVinylFromWantlist={props.removeVinylFromWantlist}
+        />      
         {albumInfo ? <TrackList trackList={albumInfo.tracklist} /> : null}
 
     

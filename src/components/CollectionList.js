@@ -4,7 +4,7 @@ import CollectionItem from './CollectionItem';
 
 
 const CollectionList = (props) => {
-  let sortedVinyls = props.vinyls.sort((a,b) => { return a.artist < b.artist ? -1 : 1 })
+  let sortedVinyls = props.vinyls.sort((a,b) => { return a.album.release.artist < b.album.release.artist ? -1 : 1 })
   return (
     <>
       <Table celled inverted selectable striped padded>

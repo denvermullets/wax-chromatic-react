@@ -44,6 +44,8 @@ const ReleaseGrid = (props) => {
               key={release.id}
               release={release}
               artistInfo={props.artistInfo}
+              collection={props.collection}
+              wantlist={props.wantlist}
               // inCollection={releasesInCollection(release)}  
             />
             
