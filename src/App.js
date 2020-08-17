@@ -40,20 +40,74 @@ class App extends Component {
   
   loadCollection = () => {
     const waxUser = JSON.parse(localStorage.getItem("waxUser"))
-    fetch(`${waxUrl}/collections/${waxUser.id}`, {
-      method: 'GET',
-      headers: {Authorization: `Bearer ${waxUser.token}`}})
+    console.log('loading collection')
+    if (waxUser) {
+      fetch(`${waxUrl}/collections/${waxUser.id}`, {
+        method: 'GET',
+        headers: {Authorization: `Bearer ${waxUser.token}`}})
         .then(response => response.json())
         .then(albums => this.setState({collection: albums}))
+    }
+    console.log('done loading collection')
   }
 
   loadWantlist = () => {
     const waxUser = JSON.parse(localStorage.getItem("waxUser"))
-    fetch(`${waxUrl}/wantlists/${waxUser.id}`, {
-      method: 'GET',
-      headers: {Authorization: `Bearer ${waxUser.token}`}})
+    if (waxUser) {
+      fetch(`${waxUrl}/wantlists/${waxUser.id}`, {
+        method: 'GET',
+        headers: {Authorization: `Bearer ${waxUser.token}`}})
         .then(response => response.json())
         .then(albums => this.setState({wantlist: albums}))
+    }
+  }
+
+  addVinylToCollection = (albumId) => {
+    const waxUser = JSON.parse(localStorage.getItem("waxUser"))
+    fetch(`${waxUrl}/collection_albums/`, {
+      method: 'POST',
+      body: JSON.stringify({
+        collection_id: waxUser.collection,
+        album_id: albumId }),
+      headers: {'Content-Type': 'application/json', Authorization: `Bearer ${waxUser.token}`}})
+        .then(response => response.json())
+        .then(addAlbum => {
+          this.loadCollection()
+        })
+  }
+
+  removeVinylFromCollection = (collectionAlbumId) => {
+    const waxUser = JSON.parse(localStorage.getItem("waxUser"))
+    fetch(`${waxUrl}/collection_albums/${collectionAlbumId}`, {
+      method: 'DELETE',
+      headers: {Authorization: `Bearer ${waxUser.token}`}})
+        .then(deletedAlbum => {
+          this.loadCollection()
+        })
+  }
+
+  addVinylToWantlist = (albumId) => {
+    const waxUser = JSON.parse(localStorage.getItem("waxUser"))
+    fetch(`${waxUrl}/wantlist_albums/`, {
+      method: 'POST',
+      body: JSON.stringify({
+        wantlist_id: waxUser.collection,
+        album_id: albumId }),
+      headers: {'Content-Type': 'application/json', Authorization: `Bearer ${waxUser.token}`}})
+        .then(response => response.json())
+        .then(addAlbum => {
+          this.loadWantlist()
+        })
+  }
+
+  removeVinylFromWantlist = (wantlistAlbumId) => {
+    const waxUser = JSON.parse(localStorage.getItem("waxUser"))
+    fetch(`${waxUrl}/wantlist_albums/${wantlistAlbumId}`, {
+      method: 'DELETE',
+      headers: {Authorization: `Bearer ${waxUser.token}`}})
+        .then(deletedAlbum => {
+          this.loadWantlist()
+        })
   }
 
   updateUsername = (username) => {
@@ -68,6 +122,8 @@ class App extends Component {
     this.setState({wantlist: newWantlist})
   }
 
+  // TODO at some point we need to redo how the components are ordered / loaded
+  // initially was going to be a single page app but changed direction midway through so first couple of pages are rough
   render() {
     return (
       <>
@@ -81,10 +137,16 @@ class App extends Component {
         <Route path="/profile" render={() => <UserProfile username={this.state.username}/>}/>
         <Route path="/login" render={() => <LoginPage updateUsername={this.updateUsername} userLoggedIn={this.userLoggedIn} loggedIn={this.state.loggedIn} />}/>
         <Route path="/signup" render={() => <NewUserPage updateUsername={this.updateUsername} userLoggedIn={this.userLoggedIn} loggedIn={this.state.loggedIn} />}/>
-        {/* <Route path="/artist" component={ArtistProfile}/> */}
         <Route path="/artist" render={() => <ArtistProfile collection={this.state.collection} wantlist={this.state.wantlist} />}/>
         {/* <Route path="/release" component={ReleasePage}/> */}
-        <Route path="/release" render={() => <ReleasePage collection={this.state.collection} wantlist={this.state.wantlist} />}/>
+        <Route path="/release" render={() => <ReleasePage 
+          collection={this.state.collection}
+          wantlist={this.state.wantlist}
+          addVinylToCollection={this.addVinylToCollection}
+          removeVinylFromCollection={this.removeVinylFromCollection}
+          addVinylToWantlist={this.addVinylToWantlist}
+          removeVinylFromWantlist={this.removeVinylFromWantlist}
+        />}/>
         <Route path="/logout" render={() => <Logout updateUsername={this.updateUsername} userLoggedIn={this.userLoggedIn} loggedIn={this.state.loggedIn} />}/>
         <Route path="/" render={() => <Home updateUsername={this.updateUsername} userLoggedIn={this.userLoggedIn} loggedIn={this.state.loggedIn} />}/>
       </Switch>

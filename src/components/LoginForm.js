@@ -33,6 +33,7 @@ class LoginForm extends Component {
           this.props.updateUsername(result.user.wax_username)
           // clear any previous user login info and set new info
           localStorage.clear()
+          console.log('user?', result)
           const userInfo = {
             'username': result.user.wax_username,
             'discogs_id': result.user.discogs_id,
@@ -40,7 +41,9 @@ class LoginForm extends Component {
             'oauth_token': result.user.oauth_token,
             'oauth_token_secret': result.user.oauth_token_secret,
             'token': result.jwt,
-            'id': result.user.id
+            'id': result.user.id,
+            'wantlist': result.wantlist,
+            'collection': result.collection
           }
           localStorage.setItem('waxUser', JSON.stringify(userInfo))
           this.props.userLoggedIn()
