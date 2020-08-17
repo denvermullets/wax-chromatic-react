@@ -26,88 +26,65 @@ const VariantListItem = (props) => {
   const addDefaultSrc = (ev) => {
     ev.target.src = 'https://freesvg.org/img/1536281106.png'
   }
-
-  const checkAgainstWantlist = () => {
-    console.log('checking wantlist to see if on list')
-    props.wantlist.forEach(record => {
-      if (record.album_id === props.vinyl.id ){
-        setInWantList(true)
-      } else {
-        setInWantList(false)
-      }
-    })
-  }
-
-  const checkAgainstCollectionlist = () => {
-    console.log('checking wantlist to see if on list')
-    props.collection.forEach(record => {
-      if (record.album_id === props.vinyl.id ){
-        setInCollection(true)
-      } else {
-        setInCollection(false)
-      }
-    })
-  }
   
-  const addToCollection = (album) => {
-    console.log(props)
-    // getWaxAlbumId()
-    fetch(`${waxUrl}/collection_albums/`, {
-      method: 'POST',
-      body: JSON.stringify(album),
-      headers: {
-        "Content-type": "application/json; charset=UTF-8"
-      } })
-        .then(response => response.json())
-        // .then(props.checkCollectionlist())
-        .then(props.updateCount())
-        .then(setInCollection(true))
-        .catch(error => console.log('error', error))
-    }
+  // const addToCollection = (album) => {
+  //   console.log(props)
+  //   // getWaxAlbumId()
+  //   fetch(`${waxUrl}/collection_albums/`, {
+  //     method: 'POST',
+  //     body: JSON.stringify(album),
+  //     headers: {
+  //       "Content-type": "application/json; charset=UTF-8"
+  //     } })
+  //       .then(response => response.json())
+  //       // .then(props.checkCollectionlist())
+  //       .then(props.updateCount())
+  //       .then(setInCollection(true))
+  //       .catch(error => console.log('error', error))
+  //   }
   
-  const addToWantlist = (album) => {
-  fetch(`${waxUrl}/wantlist_albums/`, {
-    method: 'POST',
-    body: JSON.stringify(album),
-    headers: {
-      "Content-type": "application/json; charset=UTF-8"
-    } })
-      .then(response => response.json())
-      // .then(props.checkWantlist())
-      .then(props.updateCount())
-      .then(setInWantList(true))
-      .catch(error => console.log('error', error))
-  }
+  // const addToWantlist = (album) => {
+  // fetch(`${waxUrl}/wantlist_albums/`, {
+  //   method: 'POST',
+  //   body: JSON.stringify(album),
+  //   headers: {
+  //     "Content-type": "application/json; charset=UTF-8"
+  //   } })
+  //     .then(response => response.json())
+  //     // .then(props.checkWantlist())
+  //     .then(props.updateCount())
+  //     .then(setInWantList(true))
+  //     .catch(error => console.log('error', error))
+  // }
 
-  const removeFromWantlist = () => {
-    fetch(`${waxUrl}/wantlist_albums/${id}`)
-      .then(response => response.json())
-      .then(foundRecord => {
-        fetch(`${waxUrl}/wantlist_albums/${foundRecord.id}`, {
-          method: 'DELETE'
-        })
-          // .then(props.checkWantlist())
-          .then(props.updateCount())
-          .then(setInWantList(false))
+  // const removeFromWantlist = () => {
+  //   fetch(`${waxUrl}/wantlist_albums/${id}`)
+  //     .then(response => response.json())
+  //     .then(foundRecord => {
+  //       fetch(`${waxUrl}/wantlist_albums/${foundRecord.id}`, {
+  //         method: 'DELETE'
+  //       })
+  //         // .then(props.checkWantlist())
+  //         .then(props.updateCount())
+  //         .then(setInWantList(false))
 
-      })
-  }
+  //     })
+  // }
 
-  const removeFromCollection = () => {
-    fetch(`${waxUrl}/collection_albums/${id}`)
-      .then(response => response.json())
-      .then(foundRecord => {
-        fetch(`${waxUrl}/collection_albums/${foundRecord.id}`, {
-          method: 'DELETE'
-        })
-          // .then(props.checkCollectionlist())
-          .then(props.updateCount())
-          .then(setInCollection(false))
-      })
-  }
+  // const removeFromCollection = () => {
+  //   fetch(`${waxUrl}/collection_albums/${id}`)
+  //     .then(response => response.json())
+  //     .then(foundRecord => {
+  //       fetch(`${waxUrl}/collection_albums/${foundRecord.id}`, {
+  //         method: 'DELETE'
+  //       })
+  //         // .then(props.checkCollectionlist())
+  //         .then(props.updateCount())
+  //         .then(setInCollection(false))
+  //     })
+  // }
 
   const loadVariantInfo = () => {
-    // 6273710
     console.log('loading variants')
     fetch(`${url}/releases/${d_album_id}`, requestOptions)
       .then(response => response.json())
@@ -115,12 +92,12 @@ const VariantListItem = (props) => {
   }
 
   useEffect(() => {
-    loadVariantInfo()
+    // loadVariantInfo()
   }, []);
 
   useEffect(() => {
-    checkAgainstWantlist()
-    checkAgainstCollectionlist()
+    // checkAgainstWantlist()
+    // checkAgainstCollectionlist()
   }, []);
 
   
@@ -153,7 +130,7 @@ const VariantListItem = (props) => {
                     <Button 
                       floated='right'
                       basic color='green'
-                      onClick={() => removeFromCollection()}     
+                      // onClick={() => removeFromCollection()}     
                     >
                       Remove from Collection
                     </Button>
@@ -161,7 +138,7 @@ const VariantListItem = (props) => {
                   <Button 
                   floated='right' 
                   basic color='green'
-                  onClick={() => addToCollection({ collection_id: 1, album_id: id })}
+                  // onClick={() => addToCollection({ collection_id: 1, album_id: id })}
                   >Add To Collection</Button>
 
                 }
@@ -171,13 +148,13 @@ const VariantListItem = (props) => {
                   <Button 
                   floated='right'
                   basic color='orange'
-                  onClick={() => removeFromWantlist()} 
+                  // onClick={() => removeFromWantlist()} 
                   >Remove from Wantlist</Button>  
                      :
                   <Button 
                   floated='right'
                   basic color='orange'
-                  onClick={() => addToWantlist({ wantlist_id: 1, album_id: id})} 
+                  // onClick={() => addToWantlist({ wantlist_id: 1, album_id: id})} 
                   >Add To Wantlist</Button> } 
               </Item.Extra>
                 </div>

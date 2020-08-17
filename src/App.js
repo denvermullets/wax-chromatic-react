@@ -12,6 +12,8 @@ import ReleasePage from './containers/ReleasePage'
 import NewUserPage from './containers/NewUserPage';
 import Logout from './containers/Logout';
 
+const waxUrl = 'http://localhost:3000/api/v1'
+
 class App extends Component {
   state = {
     username: '',  
@@ -22,6 +24,8 @@ class App extends Component {
 
   componentDidMount() {
     this.checkLoggedIn()
+    this.loadCollection()
+    this.loadWantlist()
   }
 
   checkLoggedIn = () => {
@@ -34,16 +38,30 @@ class App extends Component {
     }
   }
   
+  loadCollection = () => {
+    const waxUser = JSON.parse(localStorage.getItem("waxUser"))
+    fetch(`${waxUrl}/collections/${waxUser.id}`, {
+      method: 'GET',
+      headers: {Authorization: `Bearer ${waxUser.token}`}})
+        .then(response => response.json())
+        .then(albums => this.setState({collection: albums}))
+  }
+
+  loadWantlist = () => {
+    const waxUser = JSON.parse(localStorage.getItem("waxUser"))
+    fetch(`${waxUrl}/wantlists/${waxUser.id}`, {
+      method: 'GET',
+      headers: {Authorization: `Bearer ${waxUser.token}`}})
+        .then(response => response.json())
+        .then(albums => this.setState({wantlist: albums}))
+  }
+
   updateUsername = (username) => {
     this.setState({username})
   }
 
   userLoggedIn = () => {
     this.setState({loggedIn: !this.state.loggedIn})
-  }
-
-  updateCollection = (newCollection) => {
-    this.setState({collection: newCollection})
   }
 
   updateWantlist = (newWantlist) => {
@@ -58,13 +76,15 @@ class App extends Component {
       />
       <Switch>
         {/* <Route path="/pets/:id" component={PetProfile}/> */}
-        <Route path="/collection" render={() => <Collection updateCollection={this.updateCollection} collection={this.state.collection}/>}/> 
-        <Route path="/wantlist" render={() => <Wantlist updateWantlist={this.updateWantlist} wantlist={this.state.wantlist}/>}/>
+        <Route path="/collection" render={() => <Collection collection={this.state.collection}/>}/> 
+        <Route path="/wantlist" render={() => <Wantlist wantlist={this.state.wantlist}/>}/>
         <Route path="/profile" render={() => <UserProfile username={this.state.username}/>}/>
         <Route path="/login" render={() => <LoginPage updateUsername={this.updateUsername} userLoggedIn={this.userLoggedIn} loggedIn={this.state.loggedIn} />}/>
         <Route path="/signup" render={() => <NewUserPage updateUsername={this.updateUsername} userLoggedIn={this.userLoggedIn} loggedIn={this.state.loggedIn} />}/>
-        <Route path="/artist" component={ArtistProfile}/>
-        <Route path="/release" component={ReleasePage}/>
+        {/* <Route path="/artist" component={ArtistProfile}/> */}
+        <Route path="/artist" render={() => <ArtistProfile collection={this.state.collection} wantlist={this.state.wantlist} />}/>
+        {/* <Route path="/release" component={ReleasePage}/> */}
+        <Route path="/release" render={() => <ReleasePage collection={this.state.collection} wantlist={this.state.wantlist} />}/>
         <Route path="/logout" render={() => <Logout updateUsername={this.updateUsername} userLoggedIn={this.userLoggedIn} loggedIn={this.state.loggedIn} />}/>
         <Route path="/" render={() => <Home updateUsername={this.updateUsername} userLoggedIn={this.userLoggedIn} loggedIn={this.state.loggedIn} />}/>
       </Switch>
