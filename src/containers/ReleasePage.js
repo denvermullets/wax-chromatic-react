@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Header, Container } from 'semantic-ui-react';
+import { withRouter } from 'react-router-dom'
 import TrackList from '../components/TrackList';
 import VariantList from '../components/VariantList';
 
@@ -24,18 +25,6 @@ const ReleasePage = (props) => {
   const [ variants, setVariants ] = useState([])
   const [ albumInfo, setAlbumInfo ] = useState([])
 
-  const getReleaseInfo = () => {
-    // this is just a way to get the actual album info from discogs since it's not stored in my db yet
-    // contains tracklisting and other misc info for parent release
-    // TODO need to import tracklist to DB
-    console.log('checking for albuminfo / master info ', releaseId)
-    fetch(`${url}/masters/${releaseId}`, requestOptions)
-      .then(response => response.json())
-      .then(albumInfo => setAlbumInfo(albumInfo))
-      .catch(error => console.log('error getting album info ', error))
-
-  }
-
   const getRelease = () => {
     // get release variants
     console.log('checking for release ', releaseId)
@@ -47,6 +36,17 @@ const ReleasePage = (props) => {
         // .then(r => console.log(r))
         .then(variants => setVariants(variants))
         .catch(error => console.log('error getting artist ', error))
+  }
+
+  const getReleaseInfo = () => {
+    // this is just a way to get the actual album info from discogs since it's not stored in my db yet
+    // contains tracklisting and other misc info for parent release
+    // TODO need to import tracklist to DB
+    console.log('checking for albuminfo / master info ', releaseId)
+    fetch(`${url}/masters/${releaseId}`, requestOptions)
+      .then(response => response.json())
+      .then(albumInfo => setAlbumInfo(albumInfo))
+      .catch(error => console.log('error getting album info ', error))
   }
 
   useEffect(() => {
@@ -67,7 +67,7 @@ const ReleasePage = (props) => {
         </Header.Content>
       </Header>
       
-        <VariantList variants={variants.albums}/>      
+        <VariantList variants={variants.albums} collection={props.collection} wantlist={props.wantlist} />      
         {albumInfo ? <TrackList trackList={albumInfo.tracklist} /> : null}
 
     
@@ -77,4 +77,4 @@ const ReleasePage = (props) => {
   );
 }
 
-export default ReleasePage;
+export default withRouter(ReleasePage)

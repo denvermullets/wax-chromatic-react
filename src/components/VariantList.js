@@ -5,54 +5,54 @@ import VariantListItem from './VariantListItem';
 const waxUrl = 'http://localhost:3000/api/v1'
 
 const VariantList = (props) => {
-  const [ collection, setCollection ] = useState([])
-  const [ wantList, setWantlist ] = useState([])
-  const [ count, setCount ] = useState(0)
+  // const [ collection, setCollection ] = useState([])
+  // const [ wantList, setWantlist ] = useState([])
+  // const [ count, setCount ] = useState(0)
 
-  const checkCollectionlist = () => {
-    console.log('update collection?')
-    const waxUser = JSON.parse(localStorage.getItem("waxUser"))
-    fetch(`${waxUrl}/collection_albums`, {
-      method: 'GET',
-      headers: {Authorization: `Bearer ${waxUser.token}`}})
-        .then(response => response.json())
-        .then(collection => setCollection(collection))
-  }
+  // const checkCollectionlist = () => {
+  //   console.log('update collection?')
+  //   const waxUser = JSON.parse(localStorage.getItem("waxUser"))
+  //   fetch(`${waxUrl}/collection_albums`, {
+  //     method: 'GET',
+  //     headers: {Authorization: `Bearer ${waxUser.token}`}})
+  //       .then(response => response.json())
+  //       .then(collection => setCollection(collection))
+  // }
 
-  const checkWantlist = () => {
-    console.log('updating wantlist?')
-    const waxUser = JSON.parse(localStorage.getItem("waxUser"))
-    fetch(`${waxUrl}/wantlist_albums`, {
-      method: 'GET',
-      headers: {Authorization: `Bearer ${waxUser.token}`}})
-        .then(response => response.json())
-        .then(wantList => setWantlist(wantList))
-  }
+  // const checkWantlist = () => {
+  //   console.log('updating wantlist?')
+  //   const waxUser = JSON.parse(localStorage.getItem("waxUser"))
+  //   fetch(`${waxUrl}/wantlist_albums`, {
+  //     method: 'GET',
+  //     headers: {Authorization: `Bearer ${waxUser.token}`}})
+  //       .then(response => response.json())
+  //       .then(wantList => setWantlist(wantList))
+  // }
 
-  const updateCount = () => {
-    setCount(prevCount => prevCount - 1)
-  }
+  // const updateCount = () => {
+  //   setCount(prevCount => prevCount - 1)
+  // }
 
-  useEffect(() => {
-    // checkCollectionlist()
-    console.log('update collection?')
-    const waxUser = JSON.parse(localStorage.getItem("waxUser"))
-    fetch(`${waxUrl}/collection_albums`, {
-      method: 'GET',
-      headers: {Authorization: `Bearer ${waxUser.token}`}})
-        .then(response => response.json())
-        .then(collection => setCollection(collection))
-  }, [count]);
+  // useEffect(() => {
+  //   // checkCollectionlist()
+  //   console.log('update collection?')
+  //   const waxUser = JSON.parse(localStorage.getItem("waxUser"))
+  //   fetch(`${waxUrl}/collection_albums`, {
+  //     method: 'GET',
+  //     headers: {Authorization: `Bearer ${waxUser.token}`}})
+  //       .then(response => response.json())
+  //       .then(collection => setCollection(collection))
+  // }, [count]);
   
-  useEffect(() => {
-    // checkWantlist()
-    const waxUser = JSON.parse(localStorage.getItem("waxUser"))
-    fetch(`${waxUrl}/wantlist_albums`, {
-      method: 'GET',
-      headers: {Authorization: `Bearer ${waxUser.token}`}})
-        .then(response => response.json())
-        .then(wantList => setWantlist(wantList))
-  }, [count]);
+  // useEffect(() => {
+  //   // checkWantlist()
+  //   const waxUser = JSON.parse(localStorage.getItem("waxUser"))
+  //   fetch(`${waxUrl}/wantlist_albums`, {
+  //     method: 'GET',
+  //     headers: {Authorization: `Bearer ${waxUser.token}`}})
+  //       .then(response => response.json())
+  //       .then(wantList => setWantlist(wantList))
+  // }, [count]);
 
 
 
@@ -63,11 +63,11 @@ const VariantList = (props) => {
           <VariantListItem 
             vinyl={vinyl}
             key={vinyl.id}
-            collection={collection}
-            wantlist={wantList}
-            checkWantlist={checkWantlist}
-            checkCollectionlist={checkCollectionlist}
-            updateCount={updateCount}
+            collection={props.collection}
+            wantlist={props.wantlist}
+            // checkWantlist={checkWantlist}
+            // checkCollectionlist={checkCollectionlist}
+            // updateCount={updateCount}
           />  )
           
           : null}

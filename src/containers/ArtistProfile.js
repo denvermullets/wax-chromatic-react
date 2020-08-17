@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { withRouter } from 'react-router-dom'
 import ArtistBio from '../components/ArtistBio';
 import ReleaseGrid from '../components/ReleaseGrid';
 
@@ -28,11 +29,14 @@ const ArtistProfile = (props) => {
         />
       { artistInfo ? 
         <ReleaseGrid
-        artistInfo={artistInfo}
+          artistInfo={artistInfo}
+          collection={props.collection}
+          wantlist={props.wantlist}
+
       /> 
       : null }
     </>
   );
 }
 
-export default ArtistProfile;
+export default withRouter(ArtistProfile)
