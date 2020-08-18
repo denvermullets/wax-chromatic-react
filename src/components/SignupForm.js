@@ -40,9 +40,14 @@ class SignupForm extends Component {
           localStorage.clear()
           const userInfo = {
             'username': result.user.wax_username,
+            'discogs_id': result.user.discogs_id,
+            'name': result.user.name,
+            'oauth_token': result.user.oauth_token,
+            'oauth_token_secret': result.user.oauth_token_secret,
             'token': result.jwt,
             'id': result.user.id,
-            'discogs_id': result.user.discogs_id
+            'wantlist': result.wantlist,
+            'collection': result.collection
           }
           localStorage.setItem('waxUser', JSON.stringify(userInfo))
           this.props.userLoggedIn()
