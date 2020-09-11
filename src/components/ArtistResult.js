@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom'
 class ArtistResult extends Component {
 
   addDefaultSrc(ev){
-    // default image if discogs image fails or has no image
+    // default image if  image fails or has no image
     ev.target.src = 'https://freesvg.org/img/1536281106.png'
   }
 

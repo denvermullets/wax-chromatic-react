@@ -15,7 +15,7 @@ const SearchPage = (props) => {
   }
   
   const executeSearch = () => {
-    const discogsKey = `key=${process.env.REACT_APP_DISCOGS_KEY},`
+    const discogsKey = `key=${process.env.REACT_APP_},`
     const discogsSecret = `secret=${process.env.REACT_APP_DISCOGS_SECRET}`
     const discogsHeaders = {
       "Content-Type": "application/json",

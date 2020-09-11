@@ -3,7 +3,7 @@ import { Item, Label, Button} from 'semantic-ui-react'
 
 const url = 'https://api.discogs.com'
 // const waxUrl = 'http://localhost:3000/api/v1'
-const discogsKey = `key=${process.env.REACT_APP_DISCOGS_KEY},`
+const discogsKey = `key=${process.env.REACT_APP_},`
 const discogsSecret = `secret=${process.env.REACT_APP_DISCOGS_SECRET}`
 
 const requestOptions = {
