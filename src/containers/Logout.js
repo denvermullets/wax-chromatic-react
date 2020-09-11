@@ -8,7 +8,8 @@ const Logout = (props) => {
     props.updateUsername('')
     props.userLoggedIn()
     
-  }, []);
+  // added props dependency  
+  }, [props]);
 
   return (
     <>
