@@ -2,7 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { Button } from 'semantic-ui-react'
 import queryString from "query-string";
 
-const waxUrl = 'http://localhost:3000/api/v1'
+// const waxUrl = 'http://localhost:3000/api/v1'
+const waxUrl = 'https://api.waxchromatics.com/api/v1'
 
 // user clicks on 'authenticate w/discogs' button
 // get temp tokens from wax api and discogs

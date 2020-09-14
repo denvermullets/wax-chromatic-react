@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 import { Card, Button } from 'semantic-ui-react'
 
-const waxUrl = 'http://localhost:3000/api/v1'
+// const waxUrl = 'http://localhost:3000/api/v1'
+const waxUrl = 'https://api.waxchromatics.com/api/v1'
 
 const AlbumInfo = (props) => {
-  const [ waxAlbumId, setWaxAlbumId ] = useState()
+  // const [ waxAlbumId, setWaxAlbumId ] = useState()
 
   const addToCollection = (album) => {
     console.log(props)

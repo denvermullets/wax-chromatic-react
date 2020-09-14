@@ -3,7 +3,8 @@ import { withRouter } from 'react-router-dom'
 import ArtistBio from '../components/ArtistBio';
 import ReleaseGrid from '../components/ReleaseGrid';
 
-const waxUrl = 'http://localhost:3000/api/v1'
+// const waxUrl = 'http://localhost:3000/api/v1'
+const waxUrl = 'https://api.waxchromatics.com/api/v1'
 
 const ArtistProfile = (props) => {
   const artistId = props.location.state.artist.id // from router push

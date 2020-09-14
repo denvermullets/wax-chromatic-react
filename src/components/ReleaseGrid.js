@@ -3,20 +3,12 @@ import { Card, Container, Divider } from 'semantic-ui-react'
 // import LoadingAlbum from './LoadingAlbum';
 import ReleaseInfo from './ReleaseInfo';
 
-const waxUrl = 'http://localhost:3000/api/v1'
+// const waxUrl = 'http://localhost:3000/api/v1'
+const waxUrl = 'https://api.waxchromatics.com/api/v1'
 
 const ReleaseGrid = (props) => {
   const { d_artist_id, name } = props.artistInfo
   const [ artistReleases, setArtistReleases ] = useState([])
-
-  // const releasesInCollection = (singleRelease) => {
-  //   let collection = props.collection.map(collectionItem => {
-  //     if (collectionItem.album.release.d_release_id === singleRelease.id) {
-  //       return 
-  //     }
-  //   })
-  //   return collection
-  // }
 
   useEffect(() => {
     // get first page of artist releases and then filter out non parent (master) releases and only albums that are mainly by artist (no collabs cur)
@@ -30,9 +22,7 @@ const ReleaseGrid = (props) => {
         .then(artistReleases => setArtistReleases(artistReleases))
         .catch(error => console.log('error', error));
   }, [d_artist_id, name]);
-
-
-
+  
   return (
     <>
     <Container>

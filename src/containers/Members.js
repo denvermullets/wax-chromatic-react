@@ -3,7 +3,8 @@ import { List } from 'semantic-ui-react';
 import MemberItemActive from '../components/MemberItemActive';
 import MemberItemInactive from '../components/MemberItemInactive';
 
-const waxUrl = 'http://localhost:3000/api/v1'
+// const waxUrl = 'http://localhost:3000/api/v1'
+const waxUrl = 'https://api.waxchromatics.com/api/v1'
 
 const Members = (props) => {
   const artistId = props.artistId
