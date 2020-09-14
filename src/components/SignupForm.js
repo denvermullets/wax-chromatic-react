@@ -14,7 +14,8 @@ class SignupForm extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault()
-    fetch('http://localhost:3000/api/v1/users', {
+    // fetch('http://localhost:3000/api/v1/users', {
+    fetch('http://api.waxchromatics.com/api/v1/users', {
       method: 'POST',
       body: JSON.stringify({
         user: {
