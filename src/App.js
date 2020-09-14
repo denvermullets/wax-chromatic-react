@@ -12,7 +12,8 @@ import ReleasePage from './containers/ReleasePage'
 import NewUserPage from './containers/NewUserPage';
 import Logout from './containers/Logout';
 
-const waxUrl = 'http://localhost:3000/api/v1'
+// const waxUrl = 'http://localhost:3000/api/v1'
+const waxUrl = 'https://api.waxchromatics.com/api/v1'
 
 class App extends Component {
   state = {
