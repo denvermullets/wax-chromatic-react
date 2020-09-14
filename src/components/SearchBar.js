@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
 import { Input } from 'semantic-ui-react'
 
+// const waxUrl = 'http://localhost:3000/api/v1'
+const waxUrl = 'https://api.waxchromatics.com/api/v1'
+
 const SearchPage = (props) => {
   const [ search, setSearch ] = useState('')
 
@@ -15,20 +18,12 @@ const SearchPage = (props) => {
   }
   
   const executeSearch = () => {
-    const discogsKey = `key=${process.env.REACT_APP_},`
-    const discogsSecret = `secret=${process.env.REACT_APP_DISCOGS_SECRET}`
-    const discogsHeaders = {
-      "Content-Type": "application/json",
-      "Authorization": `Discogs ${discogsKey} ${discogsSecret}`,
-      "User-Agent": "WaxChromatics/v0.1 +https://localhost:3001/login"
-    }
-    
-    const requestOptions = {
+    const waxUser = JSON.parse(localStorage.getItem("waxUser"))
+    // fetch(`https://api.discogs.com/database/search?q=${search}&type=artist`, requestOptions)
+    fetch(`${waxUrl}/artists/search?artist=${search}`, {
       method: 'GET',
-      headers: discogsHeaders,
-    };
-      
-    fetch(`https://api.discogs.com/database/search?q=${search}&type=artist`, requestOptions)
+      headers: {Authorization: `Bearer ${waxUser.token}`}
+    })
       .then(response => response.json())
       .then(results => props.setArtists(results))
       .then(setSearch(''))

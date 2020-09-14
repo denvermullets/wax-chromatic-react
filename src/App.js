@@ -40,7 +40,6 @@ class App extends Component {
   
   loadCollection = () => {
     const waxUser = JSON.parse(localStorage.getItem("waxUser"))
-    console.log('loading collection')
     if (waxUser) {
       fetch(`${waxUrl}/collections/${waxUser.id}`, {
         method: 'GET',
@@ -48,7 +47,6 @@ class App extends Component {
         .then(response => response.json())
         .then(albums => this.setState({collection: albums}))
     }
-    console.log('done loading collection')
   }
 
   loadWantlist = () => {
@@ -124,6 +122,7 @@ class App extends Component {
 
   // TODO at some point we need to redo how the components are ordered / loaded
   // initially was going to be a single page app but changed direction midway through so first couple of pages are rough
+  // ex: the search results technically load on the first page but could easily be their own component
   render() {
     return (
       <>
