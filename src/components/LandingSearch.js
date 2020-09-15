@@ -26,10 +26,24 @@ const LandingSearch = (props) => {
             marginBottom: '1em'
           }}
         />
+        {props.loggedIn ? 
         <SearchBar
           hideSearch={props.hideSearch}
           setArtists={props.setArtists} 
         />
+        :
+        <Header
+          // <a href='/signup'>Sign Up</a>
+          as='h3'
+          content='Please log-in to start'
+          style={{
+            fontSize: '1em',
+            fontWeight: 'normal',
+            marginTop: '1.5em',
+            marginBottom: '1em'
+          }}
+        />
+        }
   </Container>
     </>
   );
