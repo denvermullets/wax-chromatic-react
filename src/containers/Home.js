@@ -31,6 +31,7 @@ class Home extends Component {
         {this.state.searched ? null : <LandingSearch 
           setArtists={this.setArtists}
           hideSearch={this.hideSearch}
+          loggedIn={this.props.loggedIn}
         /> }
         <Card.Group>
           {this.state.searchArtists.map(artist => {
