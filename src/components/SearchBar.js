@@ -1,9 +1,6 @@
 import React, { useState } from 'react';
 import { Input } from 'semantic-ui-react'
-
-// const waxUrl = 'http://localhost:3000/api/v1'
-const waxUrl = 'https://api.waxchromatics.com/api/v1'
- 
+import * as requests from '../request'
 
 const SearchPage = (props) => {
   const [ search, setSearch ] = useState('')
@@ -21,7 +18,7 @@ const SearchPage = (props) => {
   const executeSearch = () => {
     const waxUser = JSON.parse(localStorage.getItem("waxUser"))
     // fetch(`https://api.discogs.com/database/search?q=${search}&type=artist`, requestOptions)
-    fetch(`${waxUrl}/artists/search?artist=${search}`, {
+    fetch(`${requests.waxUrl}/artists/search?artist=${search}`, {
       method: 'GET',
       headers: {Authorization: `Bearer ${waxUser.token}`}
     })
