@@ -1,5 +1,5 @@
 import React from 'react';
-import { Container, Header } from 'semantic-ui-react'
+import { Container, Header, Message } from 'semantic-ui-react'
 import SearchBar from './SearchBar'
 
 const LandingSearch = (props) => {
@@ -32,17 +32,10 @@ const LandingSearch = (props) => {
           setArtists={props.setArtists} 
         />
         :
-        <Header
-          // <a href='/signup'>Sign Up</a>
-          as='h3'
-          content='Please log-in to start'
-          style={{
-            fontSize: '1em',
-            fontWeight: 'normal',
-            marginTop: '1.5em',
-            marginBottom: '1em'
-          }}
-        />
+        <Message warning>
+          <Message.Header>You must be logged in to search</Message.Header>
+          <p>You can use the username / pw to test: waxdemo</p>
+        </Message>
         }
   </Container>
     </>

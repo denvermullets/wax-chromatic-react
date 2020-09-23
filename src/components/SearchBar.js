@@ -3,6 +3,7 @@ import { Input } from 'semantic-ui-react'
 
 // const waxUrl = 'http://localhost:3000/api/v1'
 const waxUrl = 'https://api.waxchromatics.com/api/v1'
+ 
 
 const SearchPage = (props) => {
   const [ search, setSearch ] = useState('')
@@ -40,7 +41,7 @@ const SearchPage = (props) => {
         }}
         value={search}
         onKeyPress={onKeyPress}
-        placeholder='Search...' 
+        placeholder='Search for Artist...' 
         onChange={handleSearchChange}
       />
     </>
