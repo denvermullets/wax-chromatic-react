@@ -13,7 +13,7 @@ Coming soon:
 
 Deployed at: [waxchromatics.com](https://waxchromatics.com)
 
-[![Top Langs](https://i.imgur.com/ijzVj1K.gif)](https://github.com/denvermullets)
+![Top Langs](https://i.imgur.com/ijzVj1K.gif)](https://github.com/denvermullets)
 
 
 ## To use locally
