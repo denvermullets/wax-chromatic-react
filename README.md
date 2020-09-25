@@ -13,7 +13,9 @@ Coming soon:
 
 Deployed at: [waxchromatics.com](https://waxchromatics.com)
 
-![Top Langs](https://i.imgur.com/ijzVj1K.gif)](https://github.com/denvermullets)
+![Wax Chromatics User Nav Example](https://i.imgur.com/ijzVj1K.gif)
+
+<img src="https://i.imgur.com/ijzVj1K.gif"/>
 
 
 ## To use locally
