@@ -1,6 +1,11 @@
 # Wax Chromatics
 
+![Wax Chromatics User Nav Example](https://i.imgur.com/ArCIFWW.gif)
+
+### Description
 Wax Chromatics is a vinyl collection app that connects to your Discogs account.
+
+Deployed at: [waxchromatics.com](https://waxchromatics.com)
 
 Currently you can:
   - search for artists / albums
@@ -10,12 +15,6 @@ Coming soon:
   - barcode scanner
   - import Discogs collection / wantlist
   - user stats
-
-Deployed at: [waxchromatics.com](https://waxchromatics.com)
-
-![Wax Chromatics User Nav Example](https://i.imgur.com/ArCIFWW.gif)
-
-<img src="https://i.imgur.com/ijzVj1K.gif"/>
 
 
 ## To use locally
