@@ -13,7 +13,7 @@ Coming soon:
 
 Deployed at: [waxchromatics.com](https://waxchromatics.com)
 
-![Wax Chromatics User Nav Example](https://i.imgur.com/a/xcJ1MsE.gif)
+![Wax Chromatics User Nav Example](https://i.imgur.com/ArCIFWW.gif)
 
 <img src="https://i.imgur.com/ijzVj1K.gif"/>
 
