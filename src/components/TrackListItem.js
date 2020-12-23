@@ -1,5 +1,5 @@
-import React from 'react';
-import { Table } from 'semantic-ui-react'
+import React from "react"
+import { Table } from "semantic-ui-react"
 
 const TrackListItem = (props) => {
   return (
@@ -9,7 +9,7 @@ const TrackListItem = (props) => {
         <Table.Cell>{props.track.duration}</Table.Cell>
       </Table.Row>
     </>
-  );
+  )
 }
 
-export default TrackListItem;
+export default TrackListItem

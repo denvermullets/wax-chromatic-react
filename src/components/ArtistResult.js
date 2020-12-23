@@ -1,12 +1,11 @@
-import React, { Component } from 'react';
-import { Card, Icon } from 'semantic-ui-react'
-import { Link } from 'react-router-dom'
+import React, { Component } from "react"
+import { Card, Icon } from "semantic-ui-react"
+import { Link } from "react-router-dom"
 
 class ArtistResult extends Component {
-
-  addDefaultSrc(ev){
+  addDefaultSrc(ev) {
     // default image if  image fails or has no image
-    ev.target.src = 'https://freesvg.org/img/1536281106.png'
+    ev.target.src = "https://freesvg.org/img/1536281106.png"
   }
 
   render() {
@@ -14,24 +13,31 @@ class ArtistResult extends Component {
     return (
       <>
         <Card>
-          <img src={cover_image} onError={this.addDefaultSrc} height={275} alt={title} />
+          <img
+            src={cover_image}
+            onError={this.addDefaultSrc}
+            height={275}
+            alt={title}
+          />
           <Card.Content>
             <Card.Header>{title}</Card.Header>
           </Card.Content>
           <Card.Content extra>
-          <Link to={{
-            pathname: `/artist`,
-            search: `q=${title}`,
-            state: { artist: this.props.artist }
-          }}>
-            <Icon name='headphones' />
+            <Link
+              to={{
+                pathname: `/artist`,
+                search: `q=${title}`,
+                state: { artist: this.props.artist },
+              }}
+            >
+              <Icon name="headphones" />
               Select Artist
-          </Link>
+            </Link>
           </Card.Content>
         </Card>
       </>
-    );
+    )
   }
 }
 
-export default ArtistResult;
+export default ArtistResult

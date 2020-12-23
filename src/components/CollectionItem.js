@@ -1,8 +1,7 @@
-import React from 'react';
-import { Table, Button } from 'semantic-ui-react'
+import React from "react"
+import { Table, Button } from "semantic-ui-react"
 
 const CollectionItem = (props) => {
-  
   // const { released, title, cat_no, notes, artist} = props.vinyl
   const { released, title, cat_no, notes } = props.vinyl.album
   const { artist } = props.vinyl.album.release
@@ -14,10 +13,14 @@ const CollectionItem = (props) => {
         <Table.Cell>{title}</Table.Cell>
         <Table.Cell>{cat_no}</Table.Cell>
         <Table.Cell>{notes}</Table.Cell>
-        <Table.Cell><Button size="mini" basic color='yellow'>Remove</Button></Table.Cell>
+        <Table.Cell>
+          <Button size="mini" basic color="yellow">
+            Remove
+          </Button>
+        </Table.Cell>
       </Table.Row>
     </>
-  );
+  )
 }
 
-export default CollectionItem;
+export default CollectionItem

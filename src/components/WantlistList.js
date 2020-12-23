@@ -1,10 +1,11 @@
-import React from 'react';
-import { Table } from 'semantic-ui-react'
-import WantlistItem from './WantlistItem';
-
+import React from "react"
+import { Table } from "semantic-ui-react"
+import WantlistItem from "./WantlistItem"
 
 const WantlistList = (props) => {
-  let sortedVinyls = props.vinyls.sort((a,b) => { return a.album.release.artist < b.album.release.artist ? -1 : 1 })
+  let sortedVinyls = props.vinyls.sort((a, b) => {
+    return a.album.release.artist < b.album.release.artist ? -1 : 1
+  })
   return (
     <>
       <Table celled inverted selectable striped padded>
@@ -19,13 +20,13 @@ const WantlistList = (props) => {
           </Table.Row>
         </Table.Header>
         <Table.Body>
-          {
-            sortedVinyls.map((vinyl, index) => <WantlistItem vinyl={vinyl} key={index} />)
-          }
+          {sortedVinyls.map((vinyl, index) => (
+            <WantlistItem vinyl={vinyl} key={index} />
+          ))}
         </Table.Body>
       </Table>
     </>
-  );
+  )
 }
 
-export default WantlistList;
+export default WantlistList

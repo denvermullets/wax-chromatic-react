@@ -1,25 +1,23 @@
-import React from 'react';
-import { Card, Button, Placeholder } from 'semantic-ui-react'
+import React from "react"
+import { Card, Button, Placeholder } from "semantic-ui-react"
 
 const LoadingAlbum = () => {
   return (
     <>
-      <Card key={'0001'}>      
+      <Card key={"0001"}>
         <Placeholder>
           <Placeholder.Image square />
         </Placeholder>
         <Card.Content>
-          
-            <Placeholder>
-              <Placeholder.Header>
-                <Placeholder.Line length='very short' />
-                <Placeholder.Line length='medium' />
-              </Placeholder.Header>
-              <Placeholder.Paragraph>
-                <Placeholder.Line length='short' />
-              </Placeholder.Paragraph>
-            </Placeholder>
-          
+          <Placeholder>
+            <Placeholder.Header>
+              <Placeholder.Line length="very short" />
+              <Placeholder.Line length="medium" />
+            </Placeholder.Header>
+            <Placeholder.Paragraph>
+              <Placeholder.Line length="short" />
+            </Placeholder.Paragraph>
+          </Placeholder>
         </Card.Content>
 
         <Card.Content extra>
@@ -30,7 +28,7 @@ const LoadingAlbum = () => {
         </Card.Content>
       </Card>
     </>
-  );
+  )
 }
 
-export default LoadingAlbum;
+export default LoadingAlbum

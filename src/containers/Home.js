@@ -1,18 +1,18 @@
-import React, { Component } from 'react';
-import ArtistResult from '../components/ArtistResult';
-import { Card } from 'semantic-ui-react';
-import LandingSearch from '../components/LandingSearch';
-import '../Landingpage.css';
+import React, { Component } from "react"
+import ArtistResult from "../components/ArtistResult"
+import { Card } from "semantic-ui-react"
+import LandingSearch from "../components/LandingSearch"
+import "../Landingpage.css"
 
 class Home extends Component {
   state = {
     searchArtists: [],
-    selectedArtist: '',
+    selectedArtist: "",
     searched: false,
   }
 
   setArtists = (searchResults) => {
-    this.setState({ searchArtists: searchResults.results})
+    this.setState({ searchArtists: searchResults.results })
   }
 
   selectedArtist = (artist) => {
@@ -21,30 +21,33 @@ class Home extends Component {
   }
 
   hideSearch = () => {
-    this.setState({searched: !this.state.searched})
+    this.setState({ searched: !this.state.searched })
   }
 
   render() {
-
     return (
       <>
-        {this.state.searched ? null : <LandingSearch 
-          setArtists={this.setArtists}
-          hideSearch={this.hideSearch}
-          loggedIn={this.props.loggedIn}
-        /> }
+        {this.state.searched ? null : (
+          <LandingSearch
+            setArtists={this.setArtists}
+            hideSearch={this.hideSearch}
+            loggedIn={this.props.loggedIn}
+          />
+        )}
         <Card.Group>
-          {this.state.searchArtists.map(artist => {
-            return <ArtistResult
-            artist={artist}
-            selectedArtist={this.selectedArtist}
-            key={artist.id}
-            />
+          {this.state.searchArtists.map((artist) => {
+            return (
+              <ArtistResult
+                artist={artist}
+                selectedArtist={this.selectedArtist}
+                key={artist.id}
+              />
+            )
           })}
         </Card.Group>
       </>
-    );
+    )
   }
 }
 
-export default Home;
+export default Home

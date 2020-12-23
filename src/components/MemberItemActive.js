@@ -1,5 +1,5 @@
-import React from 'react';
-import { List } from 'semantic-ui-react'
+import React from "react"
+import { List } from "semantic-ui-react"
 
 const MemberItemActive = (props) => {
   return (
@@ -7,11 +7,11 @@ const MemberItemActive = (props) => {
       <List.Item>
         {/* <Image avatar src='/images/avatar/small/daniel.jpg' /> */}
         <List.Content>
-          <List.Header as='a'>{props.member.name}</List.Header>
+          <List.Header as="a">{props.member.name}</List.Header>
         </List.Content>
       </List.Item>
     </>
-  );
+  )
 }
 
-export default MemberItemActive;
+export default MemberItemActive

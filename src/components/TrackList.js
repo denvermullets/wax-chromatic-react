@@ -1,11 +1,11 @@
-import React from 'react';
-import { Table } from 'semantic-ui-react'
-import TrackListItem from './TrackListItem'
+import React from "react"
+import { Table } from "semantic-ui-react"
+import TrackListItem from "./TrackListItem"
 
 const TrackList = (props) => {
   return (
     <>
-      <Table basic='very' style={{marginTop: '3em'}}>
+      <Table basic="very" style={{ marginTop: "3em" }}>
         <Table.Header>
           <Table.Row>
             <Table.HeaderCell>Title</Table.HeaderCell>
@@ -13,11 +13,15 @@ const TrackList = (props) => {
           </Table.Row>
         </Table.Header>
         <Table.Body>
-          { props.trackList ? props.trackList.map(track => <TrackListItem track={track} key={track.position}/>) : null }
+          {props.trackList
+            ? props.trackList.map((track) => (
+                <TrackListItem track={track} key={track.position} />
+              ))
+            : null}
         </Table.Body>
       </Table>
     </>
-  );
+  )
 }
 
-export default TrackList;
+export default TrackList

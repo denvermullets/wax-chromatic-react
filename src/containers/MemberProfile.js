@@ -1,11 +1,7 @@
-import React from 'react';
+import React from "react"
 
 const MemberProfile = () => {
-  return (
-    <>
-      Member info here, similar to artist profile
-    </>
-  );
+  return <>Member info here, similar to artist profile</>
 }
 
-export default MemberProfile;
+export default MemberProfile
